@@ -1,0 +1,33 @@
+{
+  "name": "closestcolor",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Burtchen/closestcolor.git"
+  },
+  "description": "An application that allows you to quickly find the closest color to an existing set.",
+  "main": "index.js",
+  "author": "Christian Burtchen",
+  "license": "MIT",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "lodash": "^4.6.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "css-color-list": "0.0.1",
+    "expose-loader": "^0.7.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-webpack": "^1.0.11",
+    "json-loader": "^0.5.4",
+    "load-grunt-tasks": "^3.4.0",
+    "nodemon": "^1.8.1"
+  }
+}
