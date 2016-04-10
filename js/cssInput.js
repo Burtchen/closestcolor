@@ -1,4 +1,5 @@
 import {ColorPaletteItem} from './ColorPaletteItem'
+import {FileUploader} from './FileUploader'
 import getColorValues from './ColorDetection'
 import computeColorDifference from './ColorDifference'
 
@@ -12,6 +13,7 @@ export class Cssinput extends React.Component {
         super(props);
         this.handleCssInput = this.handleCssInput.bind(this);
         this.handleReferenceColorInput = this.handleReferenceColorInput.bind(this);
+        this.processCss = this.processCss.bind(this);
         this.state = {
             colorPalette: [],
             referenceColor: null,
@@ -30,7 +32,12 @@ export class Cssinput extends React.Component {
     }
 
     handleCssInput() {
-        let detectedColors = getColorValues(this.refs.cssInput.value) || [];
+        this.processCss(this.refs.cssInput.value);
+    }
+
+    processCss(input) {
+        //TODO: concurrent upload/input?
+        let detectedColors = getColorValues(input) || [];
         detectedColors = uniqBy(detectedColors, (detectedColor) => {
             // cf. http://stackoverflow.com/a/26306963
             return [detectedColor.red, detectedColor.green, detectedColor.blue].join(" ");
@@ -66,6 +73,7 @@ export class Cssinput extends React.Component {
                           onKeyUp={this.handleCssInput} onPaste={this.handleCssInput}>
                    Paste some CSS lines (or even your entire file) here so we can analyze your existing colors.
                 </textarea>
+                <FileUploader processCss={this.processCss}/>
                 {referenceColorInputField}
                 {moreThanOneReferenceColorNote}
                 {colorAnalysisText}
