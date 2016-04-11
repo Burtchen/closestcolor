@@ -15,6 +15,7 @@ export class ColorPaletteItem extends React.Component {
         return (
             <div className="closest-color-palette-item" style={colorPaletteItemStyle}>
                 {this.props.colorDifference}
+                {this.props.name}
             </div>
         );
     }
