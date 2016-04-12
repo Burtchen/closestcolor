@@ -24,6 +24,7 @@ export class FileUploader extends React.Component {
         // TODO: Option to clear file uploads
         let cssFileContent = "";
         if (e && e.target.files) {
+            const fileInformation = e.target.files.length > 1 ? e.target.files.length : e.target.files[0].name ;
             for (let i = 0; i < e.target.files.length; i++) {
                 const uploadedFile = e.target.files[i];
                 const reader = new FileReader();
@@ -32,7 +33,7 @@ export class FileUploader extends React.Component {
                     if (loadEvent.target && loadEvent.target.result) {
                         cssFileContent += loadEvent.target.result;
                         if (isLastFile) {
-                            this.props.storeCssFile(cssFileContent);
+                            this.props.storeCssFile(cssFileContent, fileInformation);
                         }
                     }
                 };

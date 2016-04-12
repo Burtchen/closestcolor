@@ -1,4 +1,5 @@
 import {ColorPalette} from './ColorPalette'
+import {ColorAnalysisText} from './ColorAnalysisText'
 import {FileUploader} from './FileUploader'
 import {TextInput} from './TextInput'
 import {ReferenceColorInput} from './ReferenceColorInput'
@@ -19,6 +20,7 @@ export class Cssinput extends React.Component {
         this.state = {
             colorPalette: [],
             referenceColor: null,
+            fileInformation: null,
             textfieldContent: '',
             cssFileContent: ''
         }
@@ -32,8 +34,11 @@ export class Cssinput extends React.Component {
         this.setState({textfieldContent: cssInputContent}, this.processCss);
     }
 
-    storeCssFile(cssFileContent) {
-        this.setState({cssFileContent: cssFileContent}, this.processCss);
+    storeCssFile(cssFileContent, fileInformation) {
+        this.setState({
+            cssFileContent: cssFileContent,
+            fileInformation: fileInformation
+        }, this.processCss);
     }
 
     processCss() {
@@ -53,8 +58,8 @@ export class Cssinput extends React.Component {
         let colorPalette = null;
 
         if (this.state.colorPalette && this.state.colorPalette.length) {
-            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor}/>
-            colorAnalysisText = <div>We found {this.state.colorPalette.length} unique colors in your CSS input.</div>;
+            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor}/>;
+            colorAnalysisText = <ColorAnalysisText colors={this.state.colorPalette.length} fileInformation={this.state.fileInformation} textfieldContent={this.state.textfieldContent}/>;
             referenceColorInput = (<section className="center-content">
                 <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
             </section>);
