@@ -10,7 +10,7 @@ const ReactDOM = require('react-dom');
 
 const uniqBy = require('lodash/uniqBy');
 
-export class Cssinput extends React.Component {
+export class ClosestColorContainer extends React.Component {
     constructor(props) {
         super(props);
         this.handleCssInput = this.handleCssInput.bind(this);

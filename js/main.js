@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Cssinput} from './CssInput'
+import {ClosestColorContainer} from './ClosestColorContainer'
 
-ReactDOM.render(<Cssinput/>,
+ReactDOM.render(<ClosestColorContainer/>,
     document.getElementById('react-container'));
