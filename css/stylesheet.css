@@ -1,0 +1,196 @@
+/* GENERAL STYLES */
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5rem;
+    margin: 0;
+    background-color: #000000;
+    color: #ffffff;
+    height: 100%;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ffffff;
+}
+
+button,
+.button {
+    color: #ffffff;
+    background-color: #00c854;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    font-size: 18px;
+    border: 1px solid #2d2d2d;
+}
+
+button:hover,
+.button:hover {
+    background-color: #00a646;
+}
+
+section {
+    padding: 2rem;
+}
+
+textarea, input {
+    color: #000000;
+    background-color: #ededed;
+    border: 1px solid #2d2d2d;
+    border-radius: 0.2rem;
+    font-size: 18px;
+    padding: 0.5rem;
+}
+
+input {
+    line-height: 24px;
+}
+
+.center-content {
+    justify-content: center;
+    text-align: center;
+}
+
+.sub-section {
+    padding-bottom: 2rem;
+}
+
+.closest-color-header {
+    background-color: #2d2d2d;
+    padding: 0.5rem 2rem;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.closest-color-header,
+.closest-color-footer {
+    font-size: 16px;
+}
+
+.closest-color-footer {
+    position: absolute;
+    bottom: 0;
+    color: #555555;
+    height: 40px;
+    width: 100%;
+}
+
+.closest-color-file-uploader {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.closest-color-file-uploader-button {
+    cursor: pointer;
+    padding: 1rem 2rem;
+    font-size: 24px;
+}
+
+.closest-color-css-lead-text {
+    color: #00c854;
+    cursor: pointer;
+}
+
+.closest-color-css-lead-text:hover {
+    text-decoration: underline;
+}
+
+.closest-color-textarea {
+    width: 100%;
+}
+
+.closest-color-palette {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.closest-color-palette-item {
+    width: 20%;
+    border: 1px solid #2d2d2d;
+    display: flex;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.closest-color-palette-item-dark-text {
+    color: #000000;
+}
+
+.closest-color-palette-item-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    button,
+    .button {
+        font-size: 18px;
+    }
+
+    .closest-color-header,
+    .closest-color-footer  {
+        font-size: 12px;
+    }
+
+    section {
+        padding: 1rem;
+    }
+
+    .closest-color-palette-item {
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .closest-color-palette {
+        display: flex;
+    }
+    .closest-color-palette-item {
+        flex: 1;
+    }
+    /* cf. http://stackoverflow.com/a/29308459 */
+    .closest-color-palette-item:before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+        float: left;
+    }
+
+    .closest-color-palette-item-info {
+        display: block;
+    }
+}
+}
+
+
+@media (min-width: 1440px) {
+    .closest-color-palette-item {
+        width: 10%;
+    }
+}

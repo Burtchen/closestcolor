@@ -12,6 +12,7 @@ export class FileUploader extends React.Component {
     }
 
     componentDidMount() {
+        //TODO: Consider https://github.com/Modernizr/Modernizr/blob/master/feature-detects/forms/fileinput.js
         if (window.File && window.FileReader && window.FileList && window.Blob) {
             this.setState({
                 'show': true
@@ -20,6 +21,7 @@ export class FileUploader extends React.Component {
     }
 
     handleFileUpload(e) {
+        // TODO: Option to clear file uploads
         let cssFileContent = "";
         if (e && e.target.files) {
             for (let i = 0; i < e.target.files.length; i++) {
@@ -44,9 +46,9 @@ export class FileUploader extends React.Component {
             return null;
         }
         return (
-            <div className="closest-color-file-uploader">
-                <input type="file" id="files" name="uploadedFiles" ref="fileUploader" onChange={this.handleFileUpload} multiple/>
-                {this.props.colorDifference}
+            <div className="sub-section">
+                <input type="file" className="closest-color-file-uploader" id="closest-color-file-uploader" name="closest-color-file-uploader" ref="fileUploader" onChange={this.handleFileUpload} multiple/>
+                <label className="button closest-color-file-uploader-button" htmlFor="closest-color-file-uploader">Import your styles</label>
             </div>
         );
     }

@@ -1,5 +1,7 @@
 import {ColorPaletteItem} from './ColorPaletteItem'
 import {FileUploader} from './FileUploader'
+import {TextInput} from './TextInput'
+import {ReferenceColorInput} from './ReferenceColorInput'
 import getColorValues from './ColorDetection'
 import computeColorDifference from './ColorDifference'
 
@@ -12,30 +14,23 @@ export class Cssinput extends React.Component {
     constructor(props) {
         super(props);
         this.handleCssInput = this.handleCssInput.bind(this);
-        this.handleReferenceColorInput = this.handleReferenceColorInput.bind(this);
+        this.setReferenceColor = this.setReferenceColor.bind(this);
         this.storeCssFile = this.storeCssFile.bind(this);
         this.processCss = this.processCss.bind(this);
         this.state = {
             colorPalette: [],
             referenceColor: null,
             textfieldContent: '',
-            cssFileContent: '',
-            moreThanOneReferenceColor: false
+            cssFileContent: ''
         }
     }
 
-    handleReferenceColorInput() {
-        const extractedColors = getColorValues(this.refs.referenceColorInput.value);
-        if (extractedColors) {
-            this.setState({
-                referenceColor: extractedColors.length ? extractedColors[0] : null,
-                moreThanOneReferenceColor: extractedColors.length > 1
-            });
-        }
+    setReferenceColor(color) {
+        this.setState({referenceColor: color});
     }
 
-    handleCssInput() {
-        this.setState({textfieldContent: this.refs.cssInput.value}, this.processCss);
+    handleCssInput(cssInputContent) {
+        this.setState({textfieldContent: cssInputContent}, this.processCss);
     }
 
     storeCssFile(cssFileContent) {
@@ -54,17 +49,9 @@ export class Cssinput extends React.Component {
     }
 
     render() {
-
         let colorPaletteItems = null;
         let colorAnalysisText = null;
-        const referenceColorInputField = (<div>
-            <input type="text" ref="referenceColorInput"
-                   placeholder="Which color do you want to compare?"
-                   onKeyUp={this.handleReferenceColorInput} onPaste={this.handleReferenceColorInput}/>
-        </div>);
-        const moreThanOneReferenceColorNote = this.state.moreThanOneReferenceColor ?
-            <div>You entered more than one reference color. Don't do that.</div> : null;
-
+        let referenceColorInput = null;
 
         if (this.state.colorPalette.length > 0) {
             colorPaletteItems = this.state.colorPalette.map((colorPaletteItem) => {
@@ -72,19 +59,23 @@ export class Cssinput extends React.Component {
                 return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference}/>
             });
             colorAnalysisText = <div>We found {this.state.colorPalette.length} unique colors in your CSS input.</div>;
+            referenceColorInput = (<section className="center-content">
+                <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
+            </section>);
         }
 
         return (
             <div>
-                <textarea className="closest-color-textarea closest-color-css-input" ref="cssInput"
-                          onKeyUp={this.handleCssInput} onPaste={this.handleCssInput}>
-                   Paste some CSS lines (or even your entire file) here so we can analyze your existing colors.
-                </textarea>
-                <FileUploader storeCssFile={this.storeCssFile}/>
-                {referenceColorInputField}
-                {moreThanOneReferenceColorNote}
-                {colorAnalysisText}
-                <div className="closest-color-palette">
+                <section className="center-content">
+                    <span>You have an existing color palette, but the latest design brief has a slightly mismatched color? Or you want to clean up your palette? Easily analyse your analyse and find the closest matches!</span>
+                </section>
+                <section className="center-content">
+                    <FileUploader storeCssFile={this.storeCssFile}/>
+                    <TextInput handleCssInput={this.handleCssInput}/>
+                    {colorAnalysisText}
+                </section>
+                    {referenceColorInput}
+                <div className="row closest-color-palette col-xs-12 col-sm-8 col-md-6 col-lg-4">
                     {colorPaletteItems}
                 </div>
             </div>

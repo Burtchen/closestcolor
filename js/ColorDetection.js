@@ -47,7 +47,7 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                name: cssColorName
+                cssName: cssColorName
             });
         }
     });
@@ -67,7 +67,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                name: offset > 1 ? rgbValueString.substring(0, rgbValueString.indexOf(":")) : null
+                cssName: rgbValueString,
+                variableName: offset > 1 ? rgbValueString.substring(0, rgbValueString.indexOf(":")) : null
             });
         });
     }
@@ -87,7 +88,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                name: offset > 1 ? rgbaValueString.substring(0, rgbaValueString.indexOf(":")) : null
+                cssName: rgbaValueString,
+                variableName: offset > 1 ? rgbaValueString.substring(0, rgbaValueString.indexOf(":")) : null
             });
         });
     }
@@ -108,7 +110,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                name: offset > 1 ? hslValueString.substring(0, hslValueString.indexOf(":")) : null
+                cssName: hslValueString,
+                variableName: offset > 1 ? hslValueString.substring(0, hslValueString.indexOf(":")) : null
             });
         });
     }
@@ -129,7 +132,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                name: offset > 1 ? hslaValueString.substring(0, hslaValueString.indexOf(":")) : null
+                cssName: hslaValueString,
+                variableName: offset > 1 ? hslaValueString.substring(0, hslaValueString.indexOf(":")) : null
             });
         });
     }
@@ -159,7 +163,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                name: offset > 1 ? sixLetterHexValue.substring(0, sixLetterHexValue.indexOf(":")) : null
+                cssName: sixLetterHexValue,
+                variableName: offset > 1 ? sixLetterHexValue.substring(0, sixLetterHexValue.indexOf(":")) : null
             });
         });
     }

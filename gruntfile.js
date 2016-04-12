@@ -64,6 +64,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-webpack');
-    //grunt.registerTask('default', ['webpack', 'cssmin']);
-    grunt.registerTask('default', ['webpack']); // no CSS yet
+    grunt.registerTask('default', ['webpack', 'cssmin']);
 };
