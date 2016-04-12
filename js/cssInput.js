@@ -1,9 +1,8 @@
-import {ColorPaletteItem} from './ColorPaletteItem'
+import {ColorPalette} from './ColorPalette'
 import {FileUploader} from './FileUploader'
 import {TextInput} from './TextInput'
 import {ReferenceColorInput} from './ReferenceColorInput'
 import getColorValues from './ColorDetection'
-import computeColorDifference from './ColorDifference'
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -49,15 +48,12 @@ export class Cssinput extends React.Component {
     }
 
     render() {
-        let colorPaletteItems = null;
         let colorAnalysisText = null;
         let referenceColorInput = null;
+        let colorPalette = null;
 
-        if (this.state.colorPalette.length > 0) {
-            colorPaletteItems = this.state.colorPalette.map((colorPaletteItem) => {
-                const colorDifference = this.state.referenceColor ? computeColorDifference(colorPaletteItem, this.state.referenceColor) : null;
-                return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference}/>
-            });
+        if (this.state.colorPalette && this.state.colorPalette.length) {
+            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor}/>
             colorAnalysisText = <div>We found {this.state.colorPalette.length} unique colors in your CSS input.</div>;
             referenceColorInput = (<section className="center-content">
                 <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
@@ -74,10 +70,8 @@ export class Cssinput extends React.Component {
                     <TextInput handleCssInput={this.handleCssInput}/>
                     {colorAnalysisText}
                 </section>
-                    {referenceColorInput}
-                <div className="row closest-color-palette col-xs-12 col-sm-8 col-md-6 col-lg-4">
-                    {colorPaletteItems}
-                </div>
+                {referenceColorInput}
+                {colorPalette}
             </div>
         );
     }

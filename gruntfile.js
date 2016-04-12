@@ -16,7 +16,7 @@ module.exports = function (grunt) {
             },
             target: {
                 files: {
-                    'build/closestcolor.css': ['assets/normalize.css', 'assets/stylesheet.css']
+                    'build/closestcolor.css': ['css/normalize.css', 'css/stylesheet.css']
                 }
             },
         },

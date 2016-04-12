@@ -186,8 +186,6 @@ input {
         display: block;
     }
 }
-}
-
 
 @media (min-width: 1440px) {
     .closest-color-palette-item {
