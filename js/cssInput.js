@@ -13,10 +13,13 @@ export class Cssinput extends React.Component {
         super(props);
         this.handleCssInput = this.handleCssInput.bind(this);
         this.handleReferenceColorInput = this.handleReferenceColorInput.bind(this);
+        this.storeCssFile = this.storeCssFile.bind(this);
         this.processCss = this.processCss.bind(this);
         this.state = {
             colorPalette: [],
             referenceColor: null,
+            textfieldContent: '',
+            cssFileContent: '',
             moreThanOneReferenceColor: false
         }
     }
@@ -32,12 +35,16 @@ export class Cssinput extends React.Component {
     }
 
     handleCssInput() {
-        this.processCss(this.refs.cssInput.value);
+        this.setState({textfieldContent: this.refs.cssInput.value}, this.processCss);
     }
 
-    processCss(input) {
-        //TODO: concurrent upload/input?
-        let detectedColors = getColorValues(input) || [];
+    storeCssFile(cssFileContent) {
+        this.setState({cssFileContent: cssFileContent}, this.processCss);
+    }
+
+    processCss() {
+        const combinedInput = this.state.textfieldContent + this.state.cssFileContent;
+        let detectedColors = getColorValues(combinedInput) || [];
         detectedColors = uniqBy(detectedColors, (detectedColor) => {
             // cf. http://stackoverflow.com/a/26306963
             return [detectedColor.red, detectedColor.green, detectedColor.blue].join(" ");
@@ -73,7 +80,7 @@ export class Cssinput extends React.Component {
                           onKeyUp={this.handleCssInput} onPaste={this.handleCssInput}>
                    Paste some CSS lines (or even your entire file) here so we can analyze your existing colors.
                 </textarea>
-                <FileUploader processCss={this.processCss}/>
+                <FileUploader storeCssFile={this.storeCssFile}/>
                 {referenceColorInputField}
                 {moreThanOneReferenceColorNote}
                 {colorAnalysisText}

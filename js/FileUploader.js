@@ -30,7 +30,7 @@ export class FileUploader extends React.Component {
                     if (loadEvent.target && loadEvent.target.result) {
                         cssFileContent += loadEvent.target.result;
                         if (isLastFile) {
-                            this.props.processCss(cssFileContent);
+                            this.props.storeCssFile(cssFileContent);
                         }
                     }
                 };
