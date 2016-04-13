@@ -10,6 +10,9 @@ export default function colorDifference(comparedColor, referenceColor) {
     const deltaChroma = referenceChroma - compareChroma;
     const deltaHue = Math.sqrt(Math.pow(deltaA, 2) + Math.pow(deltaB, 2) + Math.pow(deltaChroma, 2));
 
-    const deltaE94 = Math.sqrt(Math.pow(deltaLightness, 2) + Math.pow(deltaChroma / (1 + (0.045 * referenceChroma)), 2) + Math.pow(deltaHue / (1 + (0.015 * referenceChroma)), 2));
+    const k1 = 0.045;
+    const k2 = 0.015;
+
+    const deltaE94 = Math.sqrt(Math.pow(deltaLightness, 2) + Math.pow(deltaChroma / (1 + (k1 * referenceChroma)), 2) + Math.pow(deltaHue / (1 + (k2 * referenceChroma)), 2));
     return Math.round(deltaE94, 1);
 }
