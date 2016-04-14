@@ -7,7 +7,7 @@ html {
 body {
     font-family: 'Roboto', "Helvetica Neue", Arial, sans-serif;
     font-size: 18px;
-    font-weight: lighter;
+    font-weight: 100;
     text-rendering: optimizeLegibility;
     line-height: 1.5rem;
     margin: 0;
