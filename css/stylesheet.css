@@ -6,7 +6,7 @@ html {
 
 body {
     font-family: 'Roboto', "Helvetica Neue", Arial, sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 100;
     text-rendering: optimizeLegibility;
     line-height: 1.5rem;
@@ -17,7 +17,7 @@ body {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 a {
@@ -34,7 +34,7 @@ button,
     background-color: #00c854;
     padding: 0.5rem;
     border-radius: 0.2rem;
-    font-size: 18px;
+    font-size: 1.125rem;
     border: 1px solid #2d2d2d;
 }
 
@@ -52,7 +52,7 @@ textarea, input {
     background-color: #ededed;
     border: 1px solid #2d2d2d;
     border-radius: 0.2rem;
-    font-size: 18px;
+    font-size: 1.125rem;
     padding: 0.5rem;
 }
 
@@ -66,7 +66,7 @@ input {
 }
 
 .sub-section {
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .closest-color-header {
@@ -80,7 +80,7 @@ input {
 
 .closest-color-header,
 .closest-color-footer {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .closest-color-footer {
@@ -103,7 +103,12 @@ input {
 .closest-color-file-uploader-button {
     cursor: pointer;
     padding: 1rem 2rem;
-    font-size: 24px;
+    font-size: 1.5rem;
+    display: inline-block;
+}
+
+.closest-color-file-uploader-byline {
+    font-size: 0.8rem;
 }
 
 .closest-color-css-lead-text {
@@ -130,6 +135,7 @@ input {
     display: flex;
     padding: 0.5rem;
     box-sizing: border-box;
+    font-weight: 400;
 }
 
 .closest-color-palette-item-dark-text {
@@ -144,17 +150,17 @@ input {
 
 @media (max-width: 768px) {
     body {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     button,
     .button {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .closest-color-header,
     .closest-color-footer  {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     section {
