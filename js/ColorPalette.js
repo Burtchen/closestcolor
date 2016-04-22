@@ -18,6 +18,8 @@ export class ColorPalette extends React.Component {
             colorPaletteItems = sortBy(colorPaletteItems, (colorPaletteItem) => {
                 return colorPaletteItem.props.colorDifference;
             });
+            const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true}   />;
+            colorPaletteItems.push(referenceColorItem); //TODO: Push to beginning
         } else {
             let sortedColorPalette = sortBy(this.props.colorPalette, (detectedColor) => {
                 return detectedColor.lightness
