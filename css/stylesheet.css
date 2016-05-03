@@ -44,7 +44,12 @@ button:hover,
 }
 
 section {
-    padding: 2rem;
+    padding: 1rem;
+    padding-top: 2rem;
+}
+
+section + section {
+    padding-top: 1rem;
 }
 
 textarea, input {
@@ -111,6 +116,11 @@ input {
     font-size: 0.8rem;
 }
 
+.closest-color-hero-text {
+    display: inline-block;
+    max-width: 40rem;
+}
+
 .closest-color-css-lead-text {
     color: #00c854;
     cursor: pointer;
@@ -129,13 +139,21 @@ input {
     flex-wrap: wrap;
 }
 
+.closest-color-palette-filler-item,
 .closest-color-palette-item {
-    width: 20%;
-    border: 1px solid #2d2d2d;
+    flex: 1 1 6rem; //TODO: Check for media query case
     display: flex;
-    padding: 0.5rem;
     box-sizing: border-box;
+}
+
+.closest-color-palette-item {
+    border: 1px solid #2d2d2d;
+    padding: 0.5rem;
     font-weight: 400;
+}
+
+.closest-color-palette-filler-item {
+    height: 0;
 }
 
 .closest-color-palette-item-dark-text {
@@ -164,22 +182,21 @@ input {
     }
 
     section {
-        padding: 1rem;
+        padding: 0.75rem;
     }
 
     .closest-color-palette-item {
         width: 100%;
+        flex-basis: initial;
+    }
+
+    .closest-color-palette-filler-item {
+       display: none;
     }
 }
 
 
 @media (min-width: 768px) {
-    .closest-color-palette {
-        display: flex;
-    }
-    .closest-color-palette-item {
-        flex: 1;
-    }
     /* cf. http://stackoverflow.com/a/29308459 */
     .closest-color-palette-item:before {
         content: "";

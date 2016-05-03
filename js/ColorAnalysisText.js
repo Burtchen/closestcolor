@@ -16,8 +16,10 @@ export class ColorAnalysisText extends React.Component {
             inputString = "the CSS input";
         }
 
+        const sortString = this.props.hasReferenceColor ? "by proximity to your reference color" : "in their original order";
+
         return (
-            <div>We found <strong>{this.props.colors}</strong> unique {colorString} in <strong>{inputString}</strong>.</div>
+            <section className="sub-section center-content">We found <strong>{this.props.colors}</strong> unique {colorString} in <strong>{inputString}</strong>. They are sorted {sortString}.</section>
         );
     }
 }

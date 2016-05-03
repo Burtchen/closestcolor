@@ -59,7 +59,7 @@ export class ClosestColorContainer extends React.Component {
 
         if (this.state.colorPalette && this.state.colorPalette.length) {
             colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor}/>;
-            colorAnalysisText = <ColorAnalysisText colors={this.state.colorPalette.length} fileInformation={this.state.fileInformation} textfieldContent={this.state.textfieldContent}/>;
+            colorAnalysisText = <ColorAnalysisText colors={this.state.colorPalette.length} fileInformation={this.state.fileInformation} textfieldContent={this.state.textfieldContent} hasReferenceColor={this.state.referenceColor}/>;
             referenceColorInput = (<section className="center-content">
                 <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
             </section>);
@@ -68,14 +68,16 @@ export class ClosestColorContainer extends React.Component {
         return (
             <div>
                 <section className="center-content">
-                    <span>You have an existing color palette, but the latest design brief has a slightly mismatched color? Or you want to clean up your palette? Easily analyse your analyse and find the closest matches!</span>
+                    <div className="closest-color-hero-text">
+                        <span>You have an existing color palette, but the latest design brief has a slightly mismatched color? You want to clean up your color variables? Easily analyse your analyse and find the closest matches!</span>
+                    </div>
                 </section>
                 <section className="center-content">
                     <FileUploader storeCssFile={this.storeCssFile}/>
                     <TextInput handleCssInput={this.handleCssInput}/>
-                    {colorAnalysisText}
                 </section>
                 {referenceColorInput}
+                {colorAnalysisText}
                 {colorPalette}
             </div>
         );

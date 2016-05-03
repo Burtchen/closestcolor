@@ -50,7 +50,7 @@ export class FileUploader extends React.Component {
             <div className="sub-section">
                 <input type="file" className="closest-color-file-uploader" id="closest-color-file-uploader" name="closest-color-file-uploader" ref="fileUploader" onChange={this.handleFileUpload} multiple/>
                 <label className="button closest-color-file-uploader-button" htmlFor="closest-color-file-uploader">Import your styles</label>
-                <div><span className="closest-color-file-uploader-byline">Your file is not uploaded to a server or stored in any form.</span></div>
+                <div><span className="closest-color-file-uploader-byline">Your data is not uploaded to a server or stored in any form.</span></div>
             </div>
         );
     }

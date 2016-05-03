@@ -5,6 +5,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 const sortBy = require('lodash/sortBy');
+const times = require('lodash/times');
 
 export class ColorPalette extends React.Component {
 
@@ -19,7 +20,7 @@ export class ColorPalette extends React.Component {
                 return colorPaletteItem.props.colorDifference;
             });
             const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true}   />;
-            colorPaletteItems.push(referenceColorItem); //TODO: Push to beginning
+            colorPaletteItems.unshift(referenceColorItem);
         } else {
             let sortedColorPalette = sortBy(this.props.colorPalette, (detectedColor) => {
                 return detectedColor.lightness
@@ -29,9 +30,14 @@ export class ColorPalette extends React.Component {
             });
         }
 
+        const fillerItemCount = Math.min(colorPaletteItems.length, 10);
+        let fillerItems = [];
+        times(fillerItemCount, () => {fillerItems.push(<div className="closest-color-palette-filler-item"/>)});
+
         return (
             <div className="closest-color-palette">
                 {colorPaletteItems}
+                {fillerItems}
             </div>
         );
     }

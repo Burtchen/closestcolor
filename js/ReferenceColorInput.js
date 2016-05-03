@@ -27,8 +27,8 @@ export class ReferenceColorInput extends React.Component {
         return (
             <div>
                 <div>
-                    <input type="text" ref="referenceColorInput" placeholder="Insert color to compare"/>
-                    <button onClick={this.handleReferenceColorInput}>Compare colors</button>
+                    <input type="text" ref="referenceColorInput" placeholder="Your color"/>
+                    <button onClick={this.handleReferenceColorInput}>Find closest color</button>
                 </div>
                 {moreThanOneReferenceColorNote}
             </div>
