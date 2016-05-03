@@ -74,6 +74,11 @@ input {
     padding-bottom: 1.5rem;
 }
 
+.closest-color-container {
+    padding-bottom: 40px;
+    min-height: 100%;
+}
+
 .closest-color-header {
     background-color: #2d2d2d;
     padding: 0.5rem 2rem;
@@ -89,8 +94,6 @@ input {
 }
 
 .closest-color-footer {
-    position: absolute;
-    bottom: 0;
     color: #555555;
     height: 40px;
     width: 100%;
