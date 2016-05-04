@@ -163,7 +163,7 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                cssName: sixLetterHexValue,
+                cssName: sixLetterHexValue.replace(";", ""),
                 variableName: offset > 1 ? sixLetterHexValue.substring(0, sixLetterHexValue.indexOf(":")) : null
             });
         });
