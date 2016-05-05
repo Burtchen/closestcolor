@@ -75,8 +75,12 @@ input {
 }
 
 .closest-color-container {
-    padding-bottom: 40px;
-    min-height: 100%;
+    min-height:100%;
+    position:relative;
+}
+
+.closest-color-app {
+    padding-bottom: 60px;
 }
 
 .closest-color-header {
@@ -97,6 +101,10 @@ input {
     color: #555555;
     height: 40px;
     width: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 .closest-color-file-uploader {
