@@ -75,7 +75,7 @@ export class ClosestColorContainer extends React.Component {
             <div>
                 <section className="center-content">
                     <div className="closest-color-hero-text">
-                        <span>You have an existing color palette, but the latest design brief has a slightly mismatched color? You want to clean up your color variables? Easily analyse your analyse and find the closest matches!</span>
+                        <span>See your color palette. Find the color closest to the one you might have to add. Then don't add it.</span>
                     </div>
                 </section>
                 <section className="center-content">
