@@ -24,23 +24,20 @@ export class ColorPaletteItem extends React.Component {
     }
 
     get colorDifferenceText() {
+        let text = "With a " + String.fromCharCode(916) + "E of "  + this.props.colorDifference + ", there is ";
         if (this.props.colorDifference < 0.5) {
-            return "No or insignificant difference";
+            text+= "no or a really insignificant difference. This color is absolutely safe to be replaced.";
+        } else if (this.props.colorDifference < 2.3) {
+            text+= "an imperceptible difference, this color can be safely replaced.";
+        } else if (this.props.colorDifference < 5) {
+            text+= "a potentially noticable difference, but unless the colors are adjacent, still a safe replacement."
+        } else if (this.props.colorDifference < 10) {
+            text+=  "a noticable difference especially in proxmity. Can probably not be safely replaced."
+        } else {
+            text+= "a massive difference. Not a suitable replacement.";
         }
 
-        if (this.props.colorDifference < 2.3) {
-            return "Imperceptible difference";
-        }
-
-        if (this.props.colorDifference < 5) {
-            return "Noticable difference"
-        }
-
-        if (this.props.colorDifference < 10) {
-            return "Highly noticable difference"
-        }
-
-        return "Different color"
+        return text;
     }
 
     render() {
@@ -66,7 +63,7 @@ export class ColorPaletteItem extends React.Component {
         const cssName = this.displayedColorName;
 
         return (
-            <div className={colorPaletteClass} style={colorPaletteItemStyle}>
+            <div className={colorPaletteClass} style={colorPaletteItemStyle} title={colorDifferenceText}>
                 <div className="closest-color-palette-item-content center-content">
                     <span className="closest-color-palette-item-info">
                         {referenceColorNote}
