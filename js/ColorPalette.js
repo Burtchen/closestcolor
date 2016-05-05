@@ -14,19 +14,19 @@ export class ColorPalette extends React.Component {
         if (this.props.referenceColor) {
             colorPaletteItems = this.props.colorPalette.map((colorPaletteItem) => {
                 const colorDifference = computeColorDifference(colorPaletteItem, this.props.referenceColor);
-                return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference}/>
+                return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference} colorDisplayValue={this.props.colorDisplayValue}/>
             });
             colorPaletteItems = sortBy(colorPaletteItems, (colorPaletteItem) => {
                 return colorPaletteItem.props.colorDifference;
             });
-            const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true}   />;
+            const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true} colorDisplayValue={this.props.colorDisplayValue}/>;
             colorPaletteItems.unshift(referenceColorItem);
         } else {
             let sortedColorPalette = sortBy(this.props.colorPalette, (detectedColor) => {
                 return detectedColor.lightness
             });
             colorPaletteItems = sortedColorPalette.map((colorPaletteItem) => {
-                return <ColorPaletteItem {...colorPaletteItem}/>
+                return <ColorPaletteItem {...colorPaletteItem} colorDisplayValue={this.props.colorDisplayValue}/>
             });
         }
 

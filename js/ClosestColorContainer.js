@@ -15,10 +15,12 @@ export class ClosestColorContainer extends React.Component {
         super(props);
         this.handleCssInput = this.handleCssInput.bind(this);
         this.setReferenceColor = this.setReferenceColor.bind(this);
+        this.handleColorDisplayChange = this.handleColorDisplayChange.bind(this);
         this.storeCssFile = this.storeCssFile.bind(this);
         this.processCss = this.processCss.bind(this);
         this.state = {
             colorPalette: [],
+            colorDisplayValue: "original",
             referenceColor: null,
             fileInformation: null,
             textfieldContent: '',
@@ -32,6 +34,10 @@ export class ClosestColorContainer extends React.Component {
 
     handleCssInput(cssInputContent) {
         this.setState({textfieldContent: cssInputContent}, this.processCss);
+    }
+
+    handleColorDisplayChange(event) {
+        this.setState({colorDisplayValue: event.target.value});
     }
 
     storeCssFile(cssFileContent, fileInformation) {
@@ -58,8 +64,8 @@ export class ClosestColorContainer extends React.Component {
         let colorPalette = null;
 
         if (this.state.colorPalette && this.state.colorPalette.length) {
-            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor}/>;
-            colorAnalysisText = <ColorAnalysisText colors={this.state.colorPalette.length} fileInformation={this.state.fileInformation} textfieldContent={this.state.textfieldContent} hasReferenceColor={this.state.referenceColor}/>;
+            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor} colorDisplayValue={this.state.colorDisplayValue}/>;
+            colorAnalysisText = <ColorAnalysisText colors={this.state.colorPalette.length} fileInformation={this.state.fileInformation} textfieldContent={this.state.textfieldContent} hasReferenceColor={this.state.referenceColor} handleColorDisplayChange={this.handleColorDisplayChange}/>;
             referenceColorInput = (<section className="center-content">
                 <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
             </section>);

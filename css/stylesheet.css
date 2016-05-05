@@ -52,13 +52,14 @@ section + section {
     padding-top: 1rem;
 }
 
-textarea, input {
+textarea, input, select {
     color: #000000;
     background-color: #ededed;
     border: 1px solid #2d2d2d;
     border-radius: 0.2rem;
     font-size: 1.125rem;
     padding: 0.5rem;
+    outline-color: #00c854;
 }
 
 input {
@@ -72,6 +73,10 @@ input {
 
 .sub-section {
     padding-bottom: 1.5rem;
+}
+
+.no-wrap {
+    white-space: nowrap;
 }
 
 .closest-color-container {
@@ -141,6 +146,10 @@ input {
     text-decoration: underline;
 }
 
+.color-display-selector {
+    margin-left: 0.5rem;
+}
+
 .closest-color-textarea {
     width: 100%;
 }
@@ -203,6 +212,10 @@ input {
 
     .closest-color-palette-filler-item {
        display: none;
+    }
+
+    .color-display-selector {
+        font-size: 0.875rem;
     }
 }
 
