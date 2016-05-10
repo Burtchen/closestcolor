@@ -53,7 +53,7 @@ export class ColorPaletteItem extends React.Component {
             colorPaletteClass += " closest-color-palette-reference-item";
         }
         const colorDifference = typeof this.props.colorDifference === "number" ?
-            <div className="closest-color-palette-reference-color-headline center-content"> {String.fromCharCode(916)}E: {this.props.colorDifference}</div>
+            <span> {String.fromCharCode(916)}E: {this.props.colorDifference}</span>
             : null;
         const colorDifferenceText = typeof this.props.colorDifference === "number" ? this.colorDifferenceText : null;
         const referenceColorNote = this.props.referenceColor ?
@@ -68,12 +68,10 @@ export class ColorPaletteItem extends React.Component {
                     <span className="closest-color-palette-item-info">
                         {referenceColorNote}
                         {cssName}
-                    </span>
-                    <span className="closest-color-palette-item-info">
                         {this.props.variableName}
+                        {colorDifference}
                     </span>
                 </div>
-                {colorDifference}
             </div>
         );
     }

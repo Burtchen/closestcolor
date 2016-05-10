@@ -166,6 +166,8 @@ input {
     border: 1px solid #2d2d2d;
     padding: 0.5rem;
     font-weight: 400;
+    display: flex;
+    align-items: center;
 }
 
 .closest-color-palette-filler-item {
