@@ -261,7 +261,7 @@ input {
 }
 
 @media (min-width: 1440px) {
-    .closest-color-palette-item {
-        width: 10%;
+    .closest-color-palette-items-10 .closest-color-palette-filler-item {
+        display: none;
     }
 }

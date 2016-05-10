@@ -34,9 +34,10 @@ export class ColorPalette extends React.Component {
         const fillerItemCount = Math.min(colorPaletteItems.length, 10);
         let fillerItems = [];
         times(fillerItemCount, () => {fillerItems.push(<div className="closest-color-palette-filler-item"/>)});
+        const colorPaletteClass = "closest-color-palette closest-color-palette-items-" + colorPaletteItems.length;
 
         return (
-            <div className="closest-color-palette">
+            <div className={colorPaletteClass}>
                 {colorPaletteItems}
                 {fillerItems}
             </div>
