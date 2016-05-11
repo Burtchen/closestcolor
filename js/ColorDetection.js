@@ -4,7 +4,7 @@ const cssColorNames = cssColorList();
 
 export default function getColorValues(searchString) {
     const originalValue = searchString.toLowerCase();
-    const variablePattern = "(\\$\\w+\\S*:\\s)?"; //TODO: Check space after variable
+    const variablePattern = "(\\$\\w+\\S*:\\s*)?";
 
     //TODO: Maybe not build the regular expressions every time function is called?
 
@@ -67,8 +67,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                cssName: rgbValueString,
-                variableName: offset > 1 ? rgbValueString.substring(0, rgbValueString.indexOf(":")) : null
+                cssName: getCssName(rgbValueString, offset),
+                variableName: getVariableName(rgbValueString, offset)
             });
         });
     }
@@ -88,8 +88,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                cssName: rgbaValueString,
-                variableName: offset > 1 ? rgbaValueString.substring(0, rgbaValueString.indexOf(":")) : null
+                cssName: getCssName(rgbaValueString, offset),
+                variableName: getVariableName(rgbaValueString, offset)
             });
         });
     }
@@ -110,8 +110,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                cssName: hslValueString,
-                variableName: offset > 1 ? hslValueString.substring(0, hslValueString.indexOf(":")) : null
+                cssName: getCssName(hslValueString, offset),
+                variableName: getVariableName(hslValueString, offset)
             });
         });
     }
@@ -132,8 +132,8 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                cssName: hslaValueString,
-                variableName: offset > 1 ? hslaValueString.substring(0, hslaValueString.indexOf(":")) : null
+                cssName: getCssName(hslaValueString, offset),
+                variableName: getVariableName(hslaValueString, offset)
             });
         });
     }
@@ -163,11 +163,25 @@ export default function getColorValues(searchString) {
                 lightness: lab[0],
                 a: lab[1],
                 b: lab[2],
-                cssName: sixLetterHexValue.replace(";", ""),
-                variableName: offset > 1 ? sixLetterHexValue.substring(0, sixLetterHexValue.indexOf(":")) : null
+                cssName: getCssName(sixLetterHexValue, offset),
+                variableName: getVariableName(sixLetterHexValue, offset)
             });
         });
     }
 
     return extractedColors;
+}
+
+function getCssName(fullCssString, offset) {
+    if (offset > 1) {
+        return fullCssString.substring(fullCssString.indexOf(":") + 1).replace(";", "").trim();
+    }
+    return fullCssString.replace(";", "").trim();
+}
+
+function getVariableName(fullCssString, offset) {
+    if (offset > 1) {
+        return fullCssString.substring(0, fullCssString.indexOf(":"));
+    }
+    return null;
 }

@@ -61,6 +61,7 @@ export class ColorPaletteItem extends React.Component {
             null;
 
         const cssName = this.displayedColorName;
+        const variableName = this.props.variableName ? <span><br/>{this.props.variableName}</span> : null;
 
         return (
             <div className={colorPaletteClass} style={colorPaletteItemStyle} title={colorDifferenceText}>
@@ -68,7 +69,7 @@ export class ColorPaletteItem extends React.Component {
                     <span className="closest-color-palette-item-info">
                         {referenceColorNote}
                         {cssName}
-                        {this.props.variableName}
+                        {variableName}
                         {colorDifference}
                     </span>
                 </div>
