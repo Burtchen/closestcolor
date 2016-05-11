@@ -7,39 +7,46 @@ var ReactDOM = require('react-dom');
 const sortBy = require('lodash/sortBy');
 const times = require('lodash/times');
 
+const NONE = "none";
+const CONSTRAINED_SINGLE_LINE = "constrained-single-line";
+const MULTIPLE_LINES = "multiple-lines";
+
 export class ColorPalette extends React.Component {
 
     constructor(props) {
         super(props);
-        this.showFillerItems = this.showFillerItems.bind(this);
+        //this.itemLayout = this.itemLayout.bind(this);
         this.remeasure = this.remeasure.bind(this);
         this.state = {
-            showFillerItems: false
+            itemLayoutModifier: NONE
         }
     }
 
     remeasure() {
-        this.setState({showFillerItems: this.showFillerItems()});
+        this.setState({itemLayoutModifier: this.itemLayoutModifier});
     };
 
-    showFillerItems() {
-        if (this.props.colorPalette.length < 6) {
-            return false;
-        }
-
+    get itemLayoutModifier() {
         if (window.matchMedia("(max-width: 768px)").matches) {
-            return false;
+            return NONE;
         }
 
         const colorPaletteItems = ReactDOM.findDOMNode(this).querySelectorAll('.closest-color-palette-item');
         const firstColorPaletteItem = colorPaletteItems[0];
         const lastColorPaletteItem = colorPaletteItems[colorPaletteItems.length - 1];
         const moreThanOneLine = firstColorPaletteItem.getBoundingClientRect().top !== lastColorPaletteItem.getBoundingClientRect().top;
-        return moreThanOneLine;
+
+        if (moreThanOneLine) {
+            return MULTIPLE_LINES;
+        } else if (ReactDOM.findDOMNode(this).getBoundingClientRect().width / colorPaletteItems.length > 250) {
+            return CONSTRAINED_SINGLE_LINE;
+        }
+
+        return NONE;
     }
 
     componentDidMount() {
-        this.setState({showFillerItems: this.showFillerItems()});
+        this.setState({itemLayoutModifier: this.itemLayoutModifier});
         window.addEventListener('resize', this.remeasure);
     }
 
@@ -49,7 +56,7 @@ export class ColorPalette extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.colorPalette.length !== prevProps.colorPalette.length) {
-            this.setState({showFillerItems: this.showFillerItems()});
+            this.setState({itemLayoutModifier: this.itemLayoutModifier});
         }
     }
 
@@ -74,15 +81,20 @@ export class ColorPalette extends React.Component {
             });
         }
 
+
+        let colorPaletteClass = "closest-color-palette";
         let fillerItems = [];
-        if (this.state.showFillerItems) {
+        if (this.state.itemLayoutModifier === MULTIPLE_LINES) {
             // see http://jsbin.com/qaxatujaho/1/edit?html,css,output and http://stackoverflow.com/q/22085646
             const fillerItemCount = Math.min(colorPaletteItems.length, 10);
             times(fillerItemCount, () => {fillerItems.push(<div className="closest-color-palette-filler-item"/>)});
+        } else if (this.state.itemLayoutModifier === CONSTRAINED_SINGLE_LINE) {
+            colorPaletteClass += " closest-color-palette-single-line";
         }
 
+
         return (
-            <div className="closest-color-palette">
+            <div className={colorPaletteClass}>
                 {colorPaletteItems}
                 {fillerItems}
             </div>
