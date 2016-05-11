@@ -98,6 +98,16 @@ input {
     font-size: 1rem;
 }
 
+.closest-color-logo {
+    display: flex;
+    align-items: center;
+}
+
+.closest-color-title {
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
 .closest-color-footer {
     color: #555555;
     height: 40px;
