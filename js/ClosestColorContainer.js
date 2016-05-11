@@ -48,7 +48,7 @@ export class ClosestColorContainer extends React.Component {
     }
 
     processCss() {
-        const combinedInput = this.state.textfieldContent + this.state.cssFileContent;
+        const combinedInput = this.state.textfieldContent + " " + this.state.cssFileContent;
         let detectedColors = getColorValues(combinedInput) || [];
         detectedColors = uniqBy(detectedColors, (detectedColor) => {
             // cf. http://stackoverflow.com/a/26306963
