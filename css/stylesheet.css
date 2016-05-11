@@ -118,6 +118,11 @@ input {
     left: 0;
 }
 
+.closest-color-footer a,
+.closest-color-footer a:visited {
+    color: #888888;
+}
+
 .closest-color-file-uploader {
     width: 0.1px;
     height: 0.1px;
