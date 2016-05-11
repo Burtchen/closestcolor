@@ -71,6 +71,8 @@ export class ClosestColorContainer extends React.Component {
             </section>);
         }
 
+        const fileUploaderCanClear = this.state.cssFileContent && this.state.cssFileContent.length;
+
         return (
             <div>
                 <section className="center-content">
@@ -79,7 +81,7 @@ export class ClosestColorContainer extends React.Component {
                     </div>
                 </section>
                 <section className="center-content">
-                    <FileUploader storeCssFile={this.storeCssFile}/>
+                    <FileUploader storeCssFile={this.storeCssFile} canClear={fileUploaderCanClear}/>
                     <TextInput handleCssInput={this.handleCssInput}/>
                 </section>
                 {referenceColorInput}

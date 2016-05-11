@@ -143,11 +143,13 @@ input {
     max-width: 40rem;
 }
 
+.closest-color-file-uploader-reset,
 .closest-color-css-lead-text {
     color: #00c854;
     cursor: pointer;
 }
 
+.closest-color-file-uploader-reset:hover,
 .closest-color-css-lead-text:hover {
     text-decoration: underline;
 }
