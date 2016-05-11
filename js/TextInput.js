@@ -22,8 +22,7 @@ export class TextInput extends React.Component {
         const content = !this.state.showTextarea ?
             <span className="closest-color-css-lead-text" onClick={this.showTextarea}>You can also just type or paste some CSS.</span> :
             (<textarea className="closest-color-textarea" ref="cssInput"
-                      onKeyUp={this.storeCssInput} onPaste={this.storeCssInput}>
-                   Paste some CSS or SCSS here.
+                      onKeyUp={this.storeCssInput} onPaste={this.storeCssInput} placeholder="Type CSS/SCSS, or just color defintions. RGB(A), HSL(A), hex and CSS names are supported.">
                 </textarea>);
 
         return (
