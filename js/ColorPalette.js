@@ -9,6 +9,50 @@ const times = require('lodash/times');
 
 export class ColorPalette extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.showFillerItems = this.showFillerItems.bind(this);
+        this.remeasure = this.remeasure.bind(this);
+        this.state = {
+            showFillerItems: false
+        }
+    }
+
+    remeasure() {
+        this.setState({showFillerItems: this.showFillerItems()});
+    };
+
+    showFillerItems() {
+        if (this.props.colorPalette.length < 6) {
+            return false;
+        }
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            return false;
+        }
+
+        const colorPaletteItems = ReactDOM.findDOMNode(this).querySelectorAll('.closest-color-palette-item');
+        const firstColorPaletteItem = colorPaletteItems[0];
+        const lastColorPaletteItem = colorPaletteItems[colorPaletteItems.length - 1];
+        const moreThanOneLine = firstColorPaletteItem.getBoundingClientRect().top !== lastColorPaletteItem.getBoundingClientRect().top;
+        return moreThanOneLine;
+    }
+
+    componentDidMount() {
+        this.setState({showFillerItems: this.showFillerItems()});
+        window.addEventListener('resize', this.remeasure);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.remeasure);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.colorPalette.length !== prevProps.colorPalette.length) {
+            this.setState({showFillerItems: this.showFillerItems()});
+        }
+    }
+
     render() {
         let colorPaletteItems = null;
         if (this.props.referenceColor) {
@@ -30,14 +74,15 @@ export class ColorPalette extends React.Component {
             });
         }
 
-        // see http://jsbin.com/qaxatujaho/1/edit?html,css,output and http://stackoverflow.com/q/22085646
-        const fillerItemCount = Math.min(colorPaletteItems.length, 10);
         let fillerItems = [];
-        times(fillerItemCount, () => {fillerItems.push(<div className="closest-color-palette-filler-item"/>)});
-        const colorPaletteClass = "closest-color-palette closest-color-palette-items-" + colorPaletteItems.length;
+        if (this.state.showFillerItems) {
+            // see http://jsbin.com/qaxatujaho/1/edit?html,css,output and http://stackoverflow.com/q/22085646
+            const fillerItemCount = Math.min(colorPaletteItems.length, 10);
+            times(fillerItemCount, () => {fillerItems.push(<div className="closest-color-palette-filler-item"/>)});
+        }
 
         return (
-            <div className={colorPaletteClass}>
+            <div className="closest-color-palette">
                 {colorPaletteItems}
                 {fillerItems}
             </div>
