@@ -55,7 +55,7 @@ export class ColorPalette extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.colorPalette.length !== prevProps.colorPalette.length) {
+        if (this.props.colorPalette.length !== prevProps.colorPalette.length || this.props.referenceColor !== prevProps.referenceColor) {
             this.setState({itemLayoutModifier: this.itemLayoutModifier});
         }
     }
