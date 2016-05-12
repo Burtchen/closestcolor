@@ -15,7 +15,7 @@ export class ReferenceColorInput extends React.Component {
         if (extractedColors && extractedColors.length) {
             this.props.setReferenceColor(extractedColors[0]);
             this.setState({moreThanOneReferenceColor: extractedColors.length > 1});
-        } else {reset
+        } else {
             this.props.setReferenceColor(null);
             this.setState({moreThanOneReferenceColor: false});
         }
