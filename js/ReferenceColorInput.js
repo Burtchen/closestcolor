@@ -25,10 +25,11 @@ export class ReferenceColorInput extends React.Component {
 
         const moreThanOneReferenceColorNote = this.state.moreThanOneReferenceColor ?
             <div>Your input contained more than one color, using the first detected one.</div> : null;
+        const className= moreThanOneReferenceColorNote ? "sub-section" : null;
 
         return (
             <div>
-                <div>
+                <div className={className}>
                     <input type="text" ref="referenceColorInput" placeholder="Your color"/>
                     <button onClick={this.handleReferenceColorInput}>Find closest color</button>
                 </div>
