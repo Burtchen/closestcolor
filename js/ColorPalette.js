@@ -15,7 +15,6 @@ export class ColorPalette extends React.Component {
 
     constructor(props) {
         super(props);
-        //this.itemLayout = this.itemLayout.bind(this);
         this.remeasure = this.remeasure.bind(this);
         this.state = {
             itemLayoutModifier: NONE
@@ -65,19 +64,19 @@ export class ColorPalette extends React.Component {
         if (this.props.referenceColor) {
             colorPaletteItems = this.props.colorPalette.map((colorPaletteItem) => {
                 const colorDifference = computeColorDifference(colorPaletteItem, this.props.referenceColor);
-                return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference} colorDisplayValue={this.props.colorDisplayValue}/>
+                return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>
             });
             colorPaletteItems = sortBy(colorPaletteItems, (colorPaletteItem) => {
                 return colorPaletteItem.props.colorDifference;
             });
-            const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true} colorDisplayValue={this.props.colorDisplayValue}/>;
+            const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>;
             colorPaletteItems.unshift(referenceColorItem);
         } else {
             let sortedColorPalette = sortBy(this.props.colorPalette, (detectedColor) => {
                 return detectedColor.lightness
             });
             colorPaletteItems = sortedColorPalette.map((colorPaletteItem) => {
-                return <ColorPaletteItem {...colorPaletteItem} colorDisplayValue={this.props.colorDisplayValue}/>
+                return <ColorPaletteItem {...colorPaletteItem} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>
             });
         }
 

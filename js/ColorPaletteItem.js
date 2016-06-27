@@ -5,6 +5,23 @@ const colorConvert = require('color-convert');
 
 export class ColorPaletteItem extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.askForReferenceColor = this.askForReferenceColor.bind(this);
+    }
+
+    askForReferenceColor() {
+        //TODO: Actually ask rather than directly forwarding
+        this.props.setPaletteAsReferenceColor({
+            red: this.props.red,
+            green: this.props.green,
+            blue: this.props.blue,
+            lightness: this.props.lightness,
+            a: this.props.a,
+            b: this.props.b,
+        });
+    }
+
     get displayedColorName() {
         if (this.props.colorDisplayValue === "original") {
             return this.props.cssName
@@ -64,9 +81,9 @@ export class ColorPaletteItem extends React.Component {
         const variableName = this.props.variableName ? <span><br/>{this.props.variableName}</span> : null;
 
         return (
-            <div className={colorPaletteClass} style={colorPaletteItemStyle} title={colorDifferenceText}>
+            <div className={colorPaletteClass} style={colorPaletteItemStyle} title={colorDifferenceText} onClick={this.askForReferenceColor}>
                 <div className="closest-color-palette-item-content center-content">
-                    <span className="closest-color-palette-item-info">
+                    <span className="closest-color-palette-item-info" ref="colorInfo">
                         {referenceColorNote}
                         {cssName}
                         {variableName}

@@ -15,6 +15,7 @@ export class ClosestColorContainer extends React.Component {
         super(props);
         this.handleCssInput = this.handleCssInput.bind(this);
         this.setReferenceColor = this.setReferenceColor.bind(this);
+        this.setPaletteAsReferenceColor = this.setPaletteAsReferenceColor.bind(this);
         this.handleColorDisplayChange = this.handleColorDisplayChange.bind(this);
         this.storeCssFile = this.storeCssFile.bind(this);
         this.processCss = this.processCss.bind(this);
@@ -58,13 +59,18 @@ export class ClosestColorContainer extends React.Component {
         this.setState({colorPalette: detectedColors});
     }
 
+    setPaletteAsReferenceColor(color) {
+        //TODO: Change actual content of input box, highlight item
+        this.setReferenceColor(color);
+    }
+
     render() {
         let colorAnalysisText = null;
         let referenceColorInput = null;
         let colorPalette = null;
 
         if (this.state.colorPalette && this.state.colorPalette.length) {
-            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor} colorDisplayValue={this.state.colorDisplayValue}/>;
+            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor} colorDisplayValue={this.state.colorDisplayValue} setPaletteAsReferenceColor={this.setPaletteAsReferenceColor}/>;
             colorAnalysisText = <ColorAnalysisText colors={this.state.colorPalette.length} fileInformation={this.state.fileInformation} textfieldContent={this.state.textfieldContent} hasReferenceColor={this.state.referenceColor} handleColorDisplayChange={this.handleColorDisplayChange}/>;
             referenceColorInput = (<section className="center-content">
                 <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
