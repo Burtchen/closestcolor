@@ -53,8 +53,8 @@ export class FileUploader extends React.Component {
         }
 
         const byLine = this.props.canClear ?
-            <span className="closest-color-file-uploader-byline closest-color-file-uploader-reset" onClick={this.reset}>Clear imported styles</span> :
-            <span className="closest-color-file-uploader-byline">Your data is not uploaded to a server or stored in any form.</span>;
+            <span ref="byline" className="closest-color-file-uploader-byline closest-color-file-uploader-reset" onClick={this.reset}>Clear imported styles</span> :
+            <span ref="byline" className="closest-color-file-uploader-byline">Your data is not uploaded to a server or stored in any form.</span>;
 
         return (
             <div className="sub-section">
