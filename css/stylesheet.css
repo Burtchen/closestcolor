@@ -165,6 +165,7 @@ input {
 
 .closest-color-textarea {
     width: 100%;
+    box-sizing: border-box;
 }
 
 .closest-color-palette {
