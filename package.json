@@ -38,6 +38,7 @@
   },
   "jest": {
     "verbose": true,
+    "collectCoverage": true,
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/color-convert/",
       "<rootDir>/node_modules/react/",
