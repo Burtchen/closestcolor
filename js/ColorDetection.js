@@ -16,6 +16,10 @@ export default function getColorValues(searchString) {
     const sixLetterHexRegex = new RegExp(variablePattern + sixLetterHexPattern, "g");
     let sixLetterHexValues = originalValue.match(sixLetterHexRegex);
 
+    const shortRgbPattern = "^\\d{1,3},\\s?\\d{1,3},\\s?\\d{1,3}($|;|\\s)";
+    const shortRgbRegex = new RegExp(variablePattern + shortRgbPattern, "g");
+    const shortRgbValues = originalValue.match(shortRgbRegex);
+
     const rgbPattern = "(rgb\\(\\d{1,3}%?,\\s?\\d{1,3}%?,\\s?\\d{1,3}%?\\))($|;|\\s)";
     const rgbRegex = new RegExp(variablePattern + rgbPattern, "g");
     const rgbValues = originalValue.match(rgbRegex);
@@ -51,6 +55,26 @@ export default function getColorValues(searchString) {
             });
         }
     });
+
+    if (shortRgbValues !== null) {
+        shortRgbValues.forEach((shortRgbValueString) => {
+            const valueComponents = shortRgbValueString.split(",");
+            const red = parseInt(valueComponents[0], 10);
+            const green = parseInt(valueComponents[1], 10);
+            const blue = parseInt(valueComponents[2], 10);
+            const lab = colorConvert.rgb.lab(red, green, blue);
+            extractedColors.push({
+                red: red,
+                green: green,
+                blue: blue,
+                lightness: lab[0],
+                a: lab[1],
+                b: lab[2],
+                cssName: getCssName("rgb(" + red + "," + green + ","  + blue + ")"),
+                variableName: getVariableName("rgb(" + red + "," + green + ","  + blue + ")")
+            });
+        });
+    }
 
     if (rgbValues !== null) {
         rgbValues.forEach((rgbValueString) => {
