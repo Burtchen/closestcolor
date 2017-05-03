@@ -16,9 +16,9 @@ export class ColorPaletteItem extends React.Component {
             red: this.props.red,
             green: this.props.green,
             blue: this.props.blue,
-            lightness: this.props.lightness,
-            a: this.props.a,
-            b: this.props.b,
+            L: this.props.L,
+            A: this.props.A,
+            B: this.props.B,
         });
     }
 
@@ -63,7 +63,7 @@ export class ColorPaletteItem extends React.Component {
             backgroundColor: backgroundColor
         };
         let colorPaletteClass = "closest-color-palette-item";
-        if (this.props.lightness > 75) {
+        if (this.props.L > 75) {
             colorPaletteClass += " closest-color-palette-item-dark-text";
         }
         if (this.props.referenceColor) {

@@ -58,10 +58,11 @@
     <section class="closest-color-explainer">
         <p>Have you ever been in the situation where a mockup introduced a new color, but it's quite similar to the ones you already use? Or you wanted to clean up a colors.scss with $grey-lighter-7 and its cousins?</p>
         <p>ClosestColor analyses your existing color palette - which you can add as CSS/SCSS/SASS) files or in the textarea. Afterwards, you can enter the color you want to compare, and we find the closest match.</p>
-        <p>ClosestColor calculates a color difference (&Delta;E) according to <a href="https://en.wikipedia.org/wiki/Color_difference">CIE94</a>. Generally speaking, a difference <2.3 is imperceptible, anything >5 will be seen as different color.</p>
+        <p>ClosestColor calculates a color difference (&Delta;E) according to <a href="https://en.wikipedia.org/wiki/Color_difference">CIE2000</a>, thanks to
+            <a href="https://github.com/zschuessler/DeltaE">DeltaE</a>. Generally speaking, a difference <2.3 is imperceptible, anything >5 will be seen as different color.</p>
     </section>
     <footer class="closest-color-footer center-content">
-        Christian <a href="https://www.twitter.com/burtchen">Burtchen</a> 2016. Licensed under MIT. Initial design by <a
+        Christian <a href="https://www.twitter.com/burtchen">Burtchen</a> 2016-2017. Licensed under MIT. Initial design by <a
             href="https://www.twitter.com/fox">@fox</a>.
     </footer>
 </div>

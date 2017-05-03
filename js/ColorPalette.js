@@ -1,8 +1,10 @@
 import {ColorPaletteItem} from './ColorPaletteItem'
 import computeColorDifference from './ColorDifference'
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+const React = require('react');
+const ReactDOM = require('react-dom');
+
+const DeltaE = require('delta-e');
 
 const sortBy = require('lodash/sortBy');
 const times = require('lodash/times');
@@ -63,7 +65,9 @@ export class ColorPalette extends React.Component {
         let colorPaletteItems = null;
         if (this.props.referenceColor) {
             colorPaletteItems = this.props.colorPalette.map((colorPaletteItem) => {
-                const colorDifference = computeColorDifference(colorPaletteItem, this.props.referenceColor);
+                const colorDifference = Math.round(
+                    DeltaE.getDeltaE00(colorPaletteItem, this.props.referenceColor),
+                    1);
                 return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>
             });
             colorPaletteItems = sortBy(colorPaletteItems, (colorPaletteItem) => {
@@ -73,7 +77,7 @@ export class ColorPalette extends React.Component {
             colorPaletteItems.unshift(referenceColorItem);
         } else {
             let sortedColorPalette = sortBy(this.props.colorPalette, (detectedColor) => {
-                return detectedColor.lightness
+                return detectedColor.L
             });
             colorPaletteItems = sortedColorPalette.map((colorPaletteItem) => {
                 return <ColorPaletteItem {...colorPaletteItem} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>

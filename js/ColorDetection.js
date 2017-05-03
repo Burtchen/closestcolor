@@ -48,9 +48,9 @@ export default function getColorValues(searchString) {
                 red: rgb[0],
                 green: rgb[1],
                 blue: rgb[2],
-                lightness: lab[0],
-                a: lab[1],
-                b: lab[2],
+                L: lab[0],
+                A: lab[1],
+                B: lab[2],
                 cssName: cssColorName
             });
         }
@@ -67,9 +67,9 @@ export default function getColorValues(searchString) {
                 red: red,
                 green: green,
                 blue: blue,
-                lightness: lab[0],
-                a: lab[1],
-                b: lab[2],
+                L: lab[0],
+                A: lab[1],
+                B: lab[2],
                 cssName: getCssName("rgb(" + red + "," + green + ","  + blue + ")"),
                 variableName: getVariableName("rgb(" + red + "," + green + ","  + blue + ")")
             });
@@ -88,9 +88,9 @@ export default function getColorValues(searchString) {
                 red: red,
                 green: green,
                 blue: blue,
-                lightness: lab[0],
-                a: lab[1],
-                b: lab[2],
+                L: lab[0],
+                A: lab[1],
+                B: lab[2],
                 cssName: getCssName(rgbValueString, offset),
                 variableName: getVariableName(rgbValueString, offset)
             });
@@ -109,9 +109,9 @@ export default function getColorValues(searchString) {
                 red: red,
                 green: green,
                 blue: blue,
-                lightness: lab[0],
-                a: lab[1],
-                b: lab[2],
+                L: lab[0],
+                A: lab[1],
+                B: lab[2],
                 cssName: getCssName(rgbaValueString, offset),
                 variableName: getVariableName(rgbaValueString, offset)
             });
@@ -131,9 +131,9 @@ export default function getColorValues(searchString) {
                 red: rgb[0],
                 green: rgb[1],
                 blue: rgb[2],
-                lightness: lab[0],
-                a: lab[1],
-                b: lab[2],
+                L: lab[0],
+                A: lab[1],
+                B: lab[2],
                 cssName: getCssName(hslValueString, offset),
                 variableName: getVariableName(hslValueString, offset)
             });
@@ -153,9 +153,9 @@ export default function getColorValues(searchString) {
                 red: rgb[0],
                 green: rgb[1],
                 blue: rgb[2],
-                lightness: lab[0],
-                a: lab[1],
-                b: lab[2],
+                L: lab[0],
+                A: lab[1],
+                B: lab[2],
                 cssName: getCssName(hslaValueString, offset),
                 variableName: getVariableName(hslaValueString, offset)
             });
@@ -184,9 +184,9 @@ export default function getColorValues(searchString) {
                 red: rgb[0],
                 green: rgb[1],
                 blue: rgb[2],
-                lightness: lab[0],
-                a: lab[1],
-                b: lab[2],
+                L: lab[0],
+                A: lab[1],
+                B: lab[2],
                 cssName: getCssName(sixLetterHexValue, offset),
                 variableName: getVariableName(sixLetterHexValue, offset)
             });

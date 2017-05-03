@@ -69,7 +69,7 @@ describe('ColorPaletteItem', () => {
     it('displays dark text when the lightness exceeds 75', () => {
 
         const colorPaletteItem = TestUtils.renderIntoDocument(
-            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} lightness={76} />
+            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} L={76} />
         );
         const itemDomNode = ReactDOM.findDOMNode(colorPaletteItem);
         expect(itemDomNode.classList).toContain('closest-color-palette-item-dark-text');
@@ -78,7 +78,7 @@ describe('ColorPaletteItem', () => {
     it('does not display dark text when the lightness is below 75', () => {
 
         const colorPaletteItem = TestUtils.renderIntoDocument(
-            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} lightness={70} />
+            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} L={70} />
         );
         const itemDomNode = ReactDOM.findDOMNode(colorPaletteItem);
         expect(itemDomNode.classList).not.toContain('closest-color-palette-item-dark-text');
@@ -87,7 +87,7 @@ describe('ColorPaletteItem', () => {
     it('shows the colorDifference in the item', () => {
 
         const colorPaletteItem = TestUtils.renderIntoDocument(
-            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} lightness={70} colorDifference={2} />
+            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} L={70} colorDifference={2} />
         );
         const itemDomNode = ReactDOM.findDOMNode(colorPaletteItem);
         expect(itemDomNode.textContent).toEqual('#2DE100ΔE: 2');
@@ -96,7 +96,7 @@ describe('ColorPaletteItem', () => {
     it('shows a title text for every color difference value', () => {
 
         const colorPaletteItem = TestUtils.renderIntoDocument(
-            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} lightness={70} colorDifference={2} />
+            <ColorPaletteItem colorDisplayValue="hex" {...colorObject} L={70} colorDifference={2} />
         );
         const itemDomNode = ReactDOM.findDOMNode(colorPaletteItem);
         const expectedTitleText = "With a ΔE of 2, there is an imperceptible difference, this color can be safely replaced.";
