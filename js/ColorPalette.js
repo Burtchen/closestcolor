@@ -74,7 +74,18 @@ export class ColorPalette extends React.Component {
                 return colorPaletteItem.props.colorDifference;
             });
             const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>;
-            colorPaletteItems.unshift(referenceColorItem);
+            // if there is an item identical to the reference color
+            // but not it (i.e. click on palette), replace with reference - otherwise prepend
+            const firstColorProps = colorPaletteItems[0].props;
+            const referenceColorProps = referenceColorItem.props;
+            if (firstColorProps.L === referenceColorProps.L
+                && firstColorProps.A === referenceColorProps.A
+                && firstColorProps.B === referenceColorProps.B
+            ) {
+                colorPaletteItems[0] = referenceColorItem;
+            } else {
+                colorPaletteItems.unshift(referenceColorItem);
+            }
         } else {
             let sortedColorPalette = sortBy(this.props.colorPalette, (detectedColor) => {
                 return detectedColor.L
