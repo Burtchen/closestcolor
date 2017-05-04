@@ -184,12 +184,17 @@ input {
     font-weight: 400;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .closest-color-palette-single-line .closest-color-palette-item {
     flex: 1 1 auto;
     min-width: 150px;
     max-width: 200px;
+}
+
+.closest-color-palette-reference-item {
+    cursor: auto;
 }
 
 .closest-color-palette-filler-item {
