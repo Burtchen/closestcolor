@@ -11,6 +11,9 @@ export class ColorPaletteItem extends React.Component {
     }
 
     askForReferenceColor() {
+        if (this.props.referenceColor) {
+            return;
+        }
         //TODO: Actually ask rather than directly forwarding
         this.props.setPaletteAsReferenceColor({
             red: this.props.red,
