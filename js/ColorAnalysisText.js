@@ -27,6 +27,9 @@ export class ColorAnalysisText extends React.Component {
                     <option value="hsl">HSL</option>
                     <option value="hex">Hex values</option>
                 </select>.</span>
+                {!this.props.hasReferenceColor &&
+                    <p>You can set a reference color by typing in the field above or clicking on one of your palette items.</p>
+                }
             </section>
         );
     }
