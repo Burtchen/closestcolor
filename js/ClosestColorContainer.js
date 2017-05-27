@@ -65,8 +65,6 @@ export class ClosestColorContainer extends React.Component {
     }
 
     setPaletteAsReferenceColor(color) {
-        //TODO: Change actual content of input box, highlight item
-        console.log(color);
         this.setReferenceColor(color);
     }
 

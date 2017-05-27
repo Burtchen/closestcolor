@@ -19,6 +19,7 @@ export class ReferenceColorInput extends React.Component {
 
     clearExternalReference() {
         this.setState({useExternalReference: false});
+        this.props.setReferenceColor(null);
     }
 
     handleReferenceColorInput() {
@@ -34,7 +35,6 @@ export class ReferenceColorInput extends React.Component {
 
     componentWillUpdate(nextProps) {
         if (nextProps.referenceColor !== this.props.referenceColor && !this.state.useExternalReference) {
-            console.log("set it straight again");
             this.setState({useExternalReference: true});
         }
     }
@@ -48,7 +48,7 @@ export class ReferenceColorInput extends React.Component {
             <div>
                 <div className={className}>
                     <input type="text" ref="referenceColorInput" placeholder="Your color" value={this.getValueIfNeeded()} onInput={() => this.clearExternalReference()} />
-                    <button onClick={this.handleReferenceColorInput}>Find closest color</button>
+                    <button onClick={this.handleReferenceColorInput} disabled={!!this.props.referenceColor}>Find closest color</button>
                 </div>
                 {moreThanOneReferenceColorNote}
             </div>
