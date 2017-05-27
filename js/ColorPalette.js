@@ -6,6 +6,8 @@ const ReactDOM = require('react-dom');
 
 const DeltaE = require('delta-e');
 
+const groupBy = require('lodash/groupBy');
+const map = require('lodash/map');
 const sortBy = require('lodash/sortBy');
 const times = require('lodash/times');
 
@@ -61,31 +63,84 @@ export class ColorPalette extends React.Component {
         }
     }
 
+    getThresholdText(currentColorDifference) {
+        if (currentColorDifference < 2.3) {
+            return "Imperceptibly close"
+        }
+        if (currentColorDifference < 5) {
+            return "Really close, only distinguishable next to each other"
+        }
+        if (currentColorDifference < 10) {
+            return "Possibly distinguishable in proximity, but still close"
+        }
+        return "Very distinct colors"
+    }
+
     render() {
         let colorPaletteItems = null;
         if (this.props.referenceColor) {
-            colorPaletteItems = this.props.colorPalette.map((colorPaletteItem) => {
+            let referenceColorItem;
+            colorPaletteItems = this.props.colorPalette.map(colorPaletteItem => {
                 const colorDifference = Math.round(
                     DeltaE.getDeltaE00(colorPaletteItem, this.props.referenceColor),
                     1);
-                return <ColorPaletteItem {...colorPaletteItem} colorDifference={colorDifference} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>
+                const thresholdText = this.getThresholdText(colorDifference);
+                return {
+                    ...colorPaletteItem,
+                    colorDifference,
+                    thresholdText,
+                };
             });
-            colorPaletteItems = sortBy(colorPaletteItems, (colorPaletteItem) => {
-                return colorPaletteItem.props.colorDifference;
-            });
-            const referenceColorItem = <ColorPaletteItem {...this.props.referenceColor} referenceColor={true} colorDisplayValue={this.props.colorDisplayValue} setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}/>;
-            // if there is an item identical to the reference color
-            // but not it (i.e. click on palette), replace with reference - otherwise prepend
-            const firstColorProps = colorPaletteItems[0].props;
-            const referenceColorProps = referenceColorItem.props;
-            if (firstColorProps.L === referenceColorProps.L
-                && firstColorProps.A === referenceColorProps.A
-                && firstColorProps.B === referenceColorProps.B
-            ) {
-                colorPaletteItems[0] = referenceColorItem;
+
+            colorPaletteItems = sortBy(colorPaletteItems, 'colorDifference');
+
+
+            if (this.props.colorGrouping) {
+                const groupedColorPaletteItems = groupBy(colorPaletteItems, 'thresholdText');
+                // todo: filter reference color
+                colorPaletteItems = map(groupedColorPaletteItems, (colorPaletteGroup, groupTitle) => {
+                    return (
+                        <div className="closest-color-palette-group">
+                            <h2 className="closest-color-palette-group-title">{groupTitle}</h2>
+                            {
+                                colorPaletteGroup.map(colorPaletteItem => (
+                                    <ColorPaletteItem
+                                        {...colorPaletteItem}
+                                        colorDisplayValue={this.props.colorDisplayValue}
+                                        setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}
+                                    />
+                                ))
+                            }
+                        </div>
+                    );
+                });
+                referenceColorItem = (
+                    <div className="closest-color-palette-group">
+                        <h2 className="closest-color-palette-group-title">Your reference color</h2>
+                            <ColorPaletteItem
+                            {...this.props.referenceColor}
+                            referenceColor
+                            colorDisplayValue={this.props.colorDisplayValue}
+                        />
+                    </div>
+                    );
             } else {
-                colorPaletteItems.unshift(referenceColorItem);
+                colorPaletteItems = colorPaletteItems.map(colorPaletteItem => (
+                    <ColorPaletteItem
+                        {...colorPaletteItem}
+                        colorDisplayValue={this.props.colorDisplayValue}
+                        setPaletteAsReferenceColor={this.props.setPaletteAsReferenceColor}
+                    />
+                ))
+                referenceColorItem = (
+                    <ColorPaletteItem
+                        {...this.props.referenceColor}
+                        referenceColor
+                        colorDisplayValue={this.props.colorDisplayValue}
+                    />
+                );
             }
+            colorPaletteItems.unshift(referenceColorItem);
         } else {
             let sortedColorPalette = sortBy(this.props.colorPalette, (detectedColor) => {
                 return detectedColor.L

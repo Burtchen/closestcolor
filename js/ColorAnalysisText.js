@@ -21,12 +21,21 @@ export class ColorAnalysisText extends React.Component {
         return (
             <section className="sub-section center-content">
                 We found <strong>{this.props.colors}</strong> unique {colorString} in <strong>{inputString}</strong>. They are sorted {sortString}. <span className="no-wrap">Color values as
-                <select name="color-display-selector" className="color-display-selector" defaultValue="original" onChange={this.props.handleColorDisplayChange}>
+                <select name="color-display-selector" className="closest-color-select" defaultValue="original" onChange={this.props.handleColorDisplayChange}>
                     <option value="original">originally entered</option>
                     <option value="rgb">RGB</option>
                     <option value="hsl">HSL</option>
                     <option value="hex">Hex values</option>
-                </select>.</span>
+                </select>
+                {this.props.hasReferenceColor &&
+                    <span> and
+                        <select name="color-grouping-selector" className="closest-color-select" defaultValue={false} onChange={this.props.handleGroupChange}>
+                            <option value={true}>grouped</option>
+                            <option value={false}>ungrouped</option>
+                        </select>
+                    </span>
+                }
+                .</span>
                 {!this.props.hasReferenceColor &&
                     <p>You can set a reference color by typing in the field above or clicking on one of your palette items.</p>
                 }

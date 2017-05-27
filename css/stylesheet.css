@@ -157,7 +157,7 @@ input {
     text-decoration: underline;
 }
 
-.color-display-selector {
+.closest-color-select {
     margin-left: 0.5rem;
 }
 
@@ -166,16 +166,49 @@ input {
     box-sizing: border-box;
 }
 
-.closest-color-palette {
+.closest-color-palette,
+.closest-color-palette-group {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+}
+
+.closest-color-palette-group-title {
+    flex: 0 0 100%;
+    font-weight: 300;
+    font-size: 1.3em;
 }
 
 .closest-color-palette-filler-item,
 .closest-color-palette-item {
-    flex: 1 1 8rem;
+    flex: 1 1 12.5%;
+    max-width: 12.5%;
     display: flex;
     box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .closest-color-palette-filler-item,
+    .closest-color-palette-item {
+        flex-basis: 25%;
+        max-width: 25%;
+    }
+}
+
+@media (max-width: 450px) {
+    .closest-color-palette-filler-item,
+    .closest-color-palette-item {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .closest-color-palette-filler-item,
+    .closest-color-palette-item {
+        flex-basis: 10%;
+        max-width: 10%;
+    }
 }
 
 .closest-color-palette-item {
@@ -263,7 +296,7 @@ input {
        display: none;
     }
 
-    .color-display-selector {
+    .closest-color-select {
         font-size: 0.875rem;
     }
 }

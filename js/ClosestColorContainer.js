@@ -17,10 +17,12 @@ export class ClosestColorContainer extends React.Component {
         this.setReferenceColor = this.setReferenceColor.bind(this);
         this.setPaletteAsReferenceColor = this.setPaletteAsReferenceColor.bind(this);
         this.handleColorDisplayChange = this.handleColorDisplayChange.bind(this);
+        this.handleGroupChange = this.handleGroupChange.bind(this);
         this.storeCssFile = this.storeCssFile.bind(this);
         this.processCss = this.processCss.bind(this);
         this.state = {
             colorPalette: [],
+            colorGrouping: false,
             colorDisplayValue: "original",
             referenceColor: null,
             fileInformation: null,
@@ -39,6 +41,10 @@ export class ClosestColorContainer extends React.Component {
 
     handleColorDisplayChange(event) {
         this.setState({colorDisplayValue: event.target.value});
+    }
+
+    handleGroupChange(event) {
+        this.setState({colorGrouping: event.target.value !== "false"});
     }
 
     storeCssFile(cssFileContent, fileInformation) {
@@ -70,8 +76,21 @@ export class ClosestColorContainer extends React.Component {
         let colorPalette = null;
 
         if (this.state.colorPalette && this.state.colorPalette.length) {
-            colorPalette = <ColorPalette colorPalette={this.state.colorPalette} referenceColor={this.state.referenceColor} colorDisplayValue={this.state.colorDisplayValue} setPaletteAsReferenceColor={this.setPaletteAsReferenceColor}/>;
-            colorAnalysisText = <ColorAnalysisText colors={this.state.colorPalette.length} fileInformation={this.state.fileInformation} textfieldContent={this.state.textfieldContent} hasReferenceColor={this.state.referenceColor} handleColorDisplayChange={this.handleColorDisplayChange}/>;
+            colorPalette = <ColorPalette
+                colorPalette={this.state.colorPalette}
+                referenceColor={this.state.referenceColor}
+                colorDisplayValue={this.state.colorDisplayValue}
+                setPaletteAsReferenceColor={this.setPaletteAsReferenceColor}
+                colorGrouping={this.state.colorGrouping}
+            />;
+            colorAnalysisText = <ColorAnalysisText
+                colors={this.state.colorPalette.length}
+                fileInformation={this.state.fileInformation}
+                textfieldContent={this.state.textfieldContent}
+                hasReferenceColor={this.state.referenceColor}
+                handleColorDisplayChange={this.handleColorDisplayChange}
+                handleGroupChange={this.handleGroupChange}
+            />;
             referenceColorInput = (<section className="center-content">
                 <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
             </section>);
