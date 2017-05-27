@@ -80,7 +80,11 @@ export class ColorPalette extends React.Component {
         let colorPaletteItems = null;
         if (this.props.referenceColor) {
             let referenceColorItem;
-            colorPaletteItems = this.props.colorPalette.map(colorPaletteItem => {
+            colorPaletteItems = this.props.colorPalette
+                .filter(colorPaletteItem => {
+                    return colorPaletteItem.cssName !== this.props.referenceColor.cssName;
+                })
+                .map(colorPaletteItem => {
                 const colorDifference = Math.round(
                     DeltaE.getDeltaE00(colorPaletteItem, this.props.referenceColor),
                     1);
@@ -97,7 +101,6 @@ export class ColorPalette extends React.Component {
 
             if (this.props.colorGrouping) {
                 const groupedColorPaletteItems = groupBy(colorPaletteItems, 'thresholdText');
-                // todo: filter reference color
                 colorPaletteItems = map(groupedColorPaletteItems, (colorPaletteGroup, groupTitle) => {
                     return (
                         <div className="closest-color-palette-group">
