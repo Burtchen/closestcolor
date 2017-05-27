@@ -7,7 +7,18 @@ export class ReferenceColorInput extends React.Component {
     constructor(props) {
         super(props);
         this.handleReferenceColorInput = this.handleReferenceColorInput.bind(this);
-        this.state = {moreThanOneReferenceColor: false};
+        this.state = {
+            moreThanOneReferenceColor: false,
+            useExternalReference: true,
+        };
+    }
+
+    getValueIfNeeded() {
+        return this.state.useExternalReference && this.props.referenceColor !== null ? this.props.referenceColor.cssName : undefined;
+    }
+
+    clearExternalReference() {
+        this.setState({useExternalReference: false});
     }
 
     handleReferenceColorInput() {
@@ -21,8 +32,14 @@ export class ReferenceColorInput extends React.Component {
         }
     }
 
-    render() {
+    componentWillUpdate(nextProps) {
+        if (nextProps.referenceColor !== this.props.referenceColor && !this.state.useExternalReference) {
+            console.log("set it straight again");
+            this.setState({useExternalReference: true});
+        }
+    }
 
+    render() {
         const moreThanOneReferenceColorNote = this.state.moreThanOneReferenceColor ?
             <div>Your input contained more than one color, using the first detected one.</div> : null;
         const className= moreThanOneReferenceColorNote ? "sub-section" : null;
@@ -30,7 +47,7 @@ export class ReferenceColorInput extends React.Component {
         return (
             <div>
                 <div className={className}>
-                    <input type="text" ref="referenceColorInput" placeholder="Your color"/>
+                    <input type="text" ref="referenceColorInput" placeholder="Your color" value={this.getValueIfNeeded()} onInput={() => this.clearExternalReference()} />
                     <button onClick={this.handleReferenceColorInput}>Find closest color</button>
                 </div>
                 {moreThanOneReferenceColorNote}

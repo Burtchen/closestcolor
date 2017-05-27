@@ -6,7 +6,6 @@ import {ReferenceColorInput} from './ReferenceColorInput'
 import getColorValues from './ColorDetection'
 
 const React = require('react');
-const ReactDOM = require('react-dom');
 
 const uniqBy = require('lodash/uniqBy');
 
@@ -67,6 +66,7 @@ export class ClosestColorContainer extends React.Component {
 
     setPaletteAsReferenceColor(color) {
         //TODO: Change actual content of input box, highlight item
+        console.log(color);
         this.setReferenceColor(color);
     }
 
@@ -92,7 +92,7 @@ export class ClosestColorContainer extends React.Component {
                 handleGroupChange={this.handleGroupChange}
             />;
             referenceColorInput = (<section className="center-content">
-                <ReferenceColorInput setReferenceColor={this.setReferenceColor}/>
+                <ReferenceColorInput setReferenceColor={this.setReferenceColor} referenceColor={this.state.referenceColor}/>
             </section>);
         }
 
