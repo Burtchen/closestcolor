@@ -1,5 +1,6 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
+const ase = require('adobe-swatch-exchange');
+
 
 export class FileUploader extends React.Component {
 
@@ -7,17 +8,6 @@ export class FileUploader extends React.Component {
         super(props);
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.reset = this.reset.bind(this);
-        this.state = {
-            show: false
-        }
-    }
-
-    componentDidMount() {
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            this.setState({
-                'show': true
-            });
-        }
     }
 
     reset() {
@@ -36,6 +26,7 @@ export class FileUploader extends React.Component {
                 const isLastFile = i + 1 === e.target.files.length;
                 reader.onload = (loadEvent) => {
                     if (loadEvent.target && loadEvent.target.result) {
+                        console.log(ase.decode(loadEvent.target.result));
                         cssFileContent += loadEvent.target.result;
                         if (isLastFile) {
                             this.props.storeCssFile(cssFileContent, fileInformation);
@@ -48,7 +39,7 @@ export class FileUploader extends React.Component {
     }
 
     render() {
-        if (!this.state.show) {
+        if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
             return null;
         }
 
