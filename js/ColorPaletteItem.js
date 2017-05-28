@@ -31,11 +31,11 @@ export class ColorPaletteItem extends React.Component {
         }
 
         if (this.props.colorDisplayValue === "rgb") {
-            return "rgb(" + this.props.red + "," + this.props.green + "," + this.props.blue + ")";
+            return "rgb(" + this.props.red + ", " + this.props.green + ", " + this.props.blue + ")";
         }
 
         if (this.props.colorDisplayValue === "hsl") {
-            return "hsl(" + colorConvert.rgb.hsl(this.props.red, this.props.green, this.props.blue).join(",") + ")";
+            return "hsl(" + colorConvert.rgb.hsl(this.props.red, this.props.green, this.props.blue).join(", ") + ")";
         }
 
         if (this.props.colorDisplayValue === "hex") {
