@@ -4,7 +4,7 @@ const cssColorNames = cssColorList();
 
 export default function getColorValues(searchString) {
     const originalValue = searchString.toLowerCase();
-    const variablePattern = "(\\$\\w+\\S*:\\s*)?";
+    const variablePattern = "((\\$|--)\\w+\\S*:\\s*)?";
 
     //TODO: Maybe not build the regular expressions every time function is called?
 
