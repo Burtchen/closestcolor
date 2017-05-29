@@ -14,7 +14,7 @@ describe('FileUploader', () => {
         );
 
         const uploaderDomNode = fileUploader.refs.byline;
-        expect(uploaderDomNode.textContent).toEqual('Your data is not uploaded to a server or stored in any form.');
+        expect(uploaderDomNode.textContent).toEqual('Your data is not transferred or uploaded anywhere.');
         expect(uploaderDomNode.classList).not.toContain('closest-color-file-uploader-reset');
     });
 
@@ -25,7 +25,7 @@ describe('FileUploader', () => {
         );
 
         const uploaderDomNode = fileUploader.refs.byline;
-        expect(uploaderDomNode.textContent).toEqual('Clear imported styles');
+        expect(uploaderDomNode.textContent).toEqual('Clear imported/cached styles');
         expect(uploaderDomNode.classList).toContain('closest-color-file-uploader-reset');
     });
 });

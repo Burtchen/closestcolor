@@ -20,7 +20,7 @@ describe('ColorPaletteItem', () => {
         );
 
         const info = colorPaletteItem.refs.colorInfo;
-        expect(info.textContent).toEqual('rgb(45,225,0)');
+        expect(info.textContent).toEqual('rgb(45, 225, 0)');
     });
 
     it('displays the color with hsl()-text when colorDisplayValue is hsl', () => {
@@ -30,7 +30,7 @@ describe('ColorPaletteItem', () => {
         );
 
         const info = colorPaletteItem.refs.colorInfo;
-        expect(info.textContent).toEqual('hsl(108,100,44)');
+        expect(info.textContent).toEqual('hsl(108, 100, 44)');
     });
 
     it('displays the color as hexadecimal output when colorDisplayValue is hex', () => {
