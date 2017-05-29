@@ -19,8 +19,17 @@ export class ClosestColorContainer extends React.Component {
         this.handleGroupChange = this.handleGroupChange.bind(this);
         this.storeCssFile = this.storeCssFile.bind(this);
         this.processCss = this.processCss.bind(this);
+
+        let cachedColorPalette = [];
+
+        try {
+            cachedColorPalette = JSON.parse(localStorage.getItem('colorPalette')) || [];
+        } catch (error) {
+            cachedColorPalette = [];
+        }
+
         this.state = {
-            colorPalette: [],
+            colorPalette: cachedColorPalette || [],
             colorGrouping: false,
             colorDisplayValue: "original",
             referenceColor: null,
@@ -60,8 +69,12 @@ export class ClosestColorContainer extends React.Component {
             // cf. http://stackoverflow.com/a/26306963
             return [detectedColor.red, detectedColor.green, detectedColor.blue].join(" ");
         });
-
         this.setState({colorPalette: detectedColors});
+        try {
+            localStorage.setItem('colorPalette', JSON.stringify(detectedColors));
+        } catch (error) {
+            return;
+        }
     }
 
     setPaletteAsReferenceColor(color) {
@@ -94,7 +107,15 @@ export class ClosestColorContainer extends React.Component {
             </section>);
         }
 
-        const fileUploaderCanClear = this.state.cssFileContent && this.state.cssFileContent.length;
+        let hasCachedPalette;
+        try {
+            hasCachedPalette = localStorage.getItem('colorPalette')
+                && JSON.parse(localStorage.getItem('colorPalette')).length;
+        } catch (error) {
+            hasCachedPalette = false;
+        }
+        const fileUploaderCanClear =
+            hasCachedPalette || this.state.cssFileContent && this.state.cssFileContent.length;
 
         return (
             <div>

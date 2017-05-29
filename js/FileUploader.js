@@ -1,5 +1,4 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 
 export class FileUploader extends React.Component {
 
@@ -7,23 +6,17 @@ export class FileUploader extends React.Component {
         super(props);
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.reset = this.reset.bind(this);
-        this.state = {
-            show: false
-        }
-    }
-
-    componentDidMount() {
-        if (window.File && window.FileReader && window.FileList && window.Blob) {
-            this.setState({
-                'show': true
-            });
-        }
     }
 
     reset() {
         // http://stackoverflow.com/a/829740
         this.refs.form.reset();
         this.props.storeCssFile('', null);
+        try {
+            localStorage.removeItem('colorPalette');
+        } catch (error) {
+            return;
+        }
     }
 
     handleFileUpload(e) {
@@ -48,13 +41,13 @@ export class FileUploader extends React.Component {
     }
 
     render() {
-        if (!this.state.show) {
+        if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
             return null;
         }
 
         const byLine = this.props.canClear ?
-            <span ref="byline" className="closest-color-file-uploader-byline closest-color-file-uploader-reset" onClick={this.reset}>Clear imported styles</span> :
-            <span ref="byline" className="closest-color-file-uploader-byline">Your data is not uploaded to a server or stored in any form.</span>;
+            <span ref="byline" className="closest-color-file-uploader-byline closest-color-file-uploader-reset" onClick={this.reset}>Clear imported/cached styles</span> :
+            <span ref="byline" className="closest-color-file-uploader-byline">Your data is not transferred or uploaded anywhere.</span>;
 
         return (
             <div className="sub-section">
