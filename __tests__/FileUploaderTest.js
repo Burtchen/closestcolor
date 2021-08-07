@@ -3,7 +3,7 @@ jest.unmock('../js/FileUploader');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {FileUploader} from '../js/FileUploader';
+import {FileUploader} from '../../js/FileUploader';
 
 describe('FileUploader', () => {
 

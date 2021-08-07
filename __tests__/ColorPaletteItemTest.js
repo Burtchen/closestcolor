@@ -3,7 +3,7 @@ jest.unmock('../js/ColorPaletteItem');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {ColorPaletteItem} from '../js/ColorPaletteItem';
+import {ColorPaletteItem} from '../../js/ColorPaletteItem';
 
 describe('ColorPaletteItem', () => {
 

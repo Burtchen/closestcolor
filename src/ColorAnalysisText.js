@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 export class ColorAnalysisText extends React.Component {
 

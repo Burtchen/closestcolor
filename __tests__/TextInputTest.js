@@ -3,7 +3,7 @@ jest.unmock('../js/TextInput');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {TextInput} from '../js/TextInput';
+import {TextInput} from '../../js/TextInput';
 
 describe('TextInput', () => {
 

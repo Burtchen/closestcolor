@@ -1,39 +1,34 @@
-const colorConvert = require('color-convert');
-const cssColorList = require('css-color-list');
+import colorConvert from 'color-convert';
+import cssColorList from 'css-color-list';
+
 const cssColorNames = cssColorList();
+
+// cache the regexes
+const variablePattern = "((\\$|--)\\w+\\S*:\\s*)?";
+const threeLetterHexPattern = "#(\\d|(a|b|c|d|e|f)){3}(\$|;|\\s)";
+const threeLetterHexRegex = new RegExp(variablePattern + threeLetterHexPattern, "g");
+const sixLetterHexPattern = "#(\\d|(a|b|c|d|e|f)){6}(\$|;|\\s)";
+const sixLetterHexRegex = new RegExp(variablePattern + sixLetterHexPattern, "g");
+// todo: eight-letter hex
+const shortRgbPattern = "^\\d{1,3},\\s?\\d{1,3},\\s?\\d{1,3}($|;|\\s)";
+const shortRgbRegex = new RegExp(variablePattern + shortRgbPattern, "g");
+const rgbPattern = "(rgb\\(\\d{1,3}%?,\\s?\\d{1,3}%?,\\s?\\d{1,3}%?\\))($|;|\\s)";
+const rgbRegex = new RegExp(variablePattern + rgbPattern, "g");
+const rgbaPattern = "(rgba\\(\\d{1,3}%?,\\s?\\d{1,3}%?,\\s?\\d{1,3}%?\,\\s?\\d(\\.\\d)?\\))($|;|\\s)";
+const rgbaRegex = new RegExp(variablePattern + rgbaPattern, "g");
+const hslPattern = "(hsl\\(\\d{1,3},\\s?\\d{1,3}%,\\s?\\d{1,3}%\\))($|;|\\s)";
+const hslRegex = new RegExp(variablePattern + hslPattern, "g");
+const hslaPattern = "(hsla\\(\\d{1,3},\\s?\\d{1,3}%,\\s?\\d{1,3}%,\\s?\\d(\\.\\d)?\\))($|;|\\s)";
+const hslaRegex = new RegExp(variablePattern + hslaPattern, "g");
 
 export default function getColorValues(searchString) {
     const originalValue = searchString.toLowerCase();
-    const variablePattern = "((\\$|--)\\w+\\S*:\\s*)?";
-
-    //TODO: Maybe not build the regular expressions every time function is called?
-
-    const threeLetterHexPattern = "#(\\d|(a|b|c|d|e|f)){3}(\$|;|\\s)";
-    const threeLetterHexRegex = new RegExp(variablePattern + threeLetterHexPattern, "g");
     const threeLetterHexValues = originalValue.match(threeLetterHexRegex);
-
-    const sixLetterHexPattern = "#(\\d|(a|b|c|d|e|f)){6}(\$|;|\\s)";
-    const sixLetterHexRegex = new RegExp(variablePattern + sixLetterHexPattern, "g");
     let sixLetterHexValues = originalValue.match(sixLetterHexRegex);
-
-    const shortRgbPattern = "^\\d{1,3},\\s?\\d{1,3},\\s?\\d{1,3}($|;|\\s)";
-    const shortRgbRegex = new RegExp(variablePattern + shortRgbPattern, "g");
     const shortRgbValues = originalValue.match(shortRgbRegex);
-
-    const rgbPattern = "(rgb\\(\\d{1,3}%?,\\s?\\d{1,3}%?,\\s?\\d{1,3}%?\\))($|;|\\s)";
-    const rgbRegex = new RegExp(variablePattern + rgbPattern, "g");
     const rgbValues = originalValue.match(rgbRegex);
-
-    const rgbaPattern = "(rgba\\(\\d{1,3}%?,\\s?\\d{1,3}%?,\\s?\\d{1,3}%?\,\\s?\\d(\\.\\d)?\\))($|;|\\s)";
-    const rgbaRegex = new RegExp(variablePattern + rgbaPattern, "g");
     const rgbaValues = originalValue.match(rgbaRegex);
-
-    const hslPattern = "(hsl\\(\\d{1,3},\\s?\\d{1,3}%,\\s?\\d{1,3}%\\))($|;|\\s)";
-    const hslRegex = new RegExp(variablePattern + hslPattern, "g");
     const hslValues = originalValue.match(hslRegex);
-
-    const hslaPattern = "(hsla\\(\\d{1,3},\\s?\\d{1,3}%,\\s?\\d{1,3}%,\\s?\\d(\\.\\d)?\\))($|;|\\s)";
-    const hslaRegex = new RegExp(variablePattern + hslaPattern, "g");
     const hslaValues = originalValue.match(hslaRegex);
 
     let extractedColors = [];

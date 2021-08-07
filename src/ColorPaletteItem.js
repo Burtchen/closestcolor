@@ -1,7 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-const colorConvert = require('color-convert');
+import React from 'react';
+import colorConvert from 'color-convert'
 
 export class ColorPaletteItem extends React.Component {
 

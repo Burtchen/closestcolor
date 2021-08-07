@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Closest Color</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,100' rel='stylesheet' type='text/css'>
+    <link href="build/closestcolor.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="icons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="icons/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="icons/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Closest Color"/>
+    <meta name="msapplication-TileColor" content="#2D2D2D" />
+    <meta name="msapplication-TileImage" content="icons/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="icons/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="icons/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="icons/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="icons/mstile-310x310.png" />
+    <meta property="og:url" content="http://www.closestcolor.com" />
+    <meta property="og:site_name" content="ClosestColor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ClosestColor" />
+    <meta property="og:description" content="Analyze your existing color palettes. Find the closest match instead of adding yet another color to your CSS." />
+    <meta property="og:image" content="http://www.closestcolor.com/icons/favicon-196x196.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta charset="utf-8">
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="closest-color-container">
+    <div class="closest-color-header">
+      <div class="closest-color-logo">
+        <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" version="1.1" height="32" width="32">
+          <g id="layer1">
+            <rect y="4" x="4" height="26" width="26" style="fill:#00a646;fill-opacity:1"/>
+            <rect y="4" x="34" height="26" width="26" style="fill:#00c446;fill-opacity:1"/>
+            <rect y="34" x="4" height="26" width="26" style="fill:#00e246;fill-opacity:1"/>
+            <rect y="34" x="34" height="26" width="26" style="fill:#00ff46;fill-opacity:1"/>
+          </g>
+        </svg>
+        <h1 class="closest-color-title">ClosestColor</h1>
+      </div>
+      <div class="closest-color-github-note">
+        <a href="https://github.com/Burtchen/closestcolor"><i class="fa fa-github fa-fw"></i>On Github</a>
+        <a href="https://twitter.com/closest_color"><i class="fa fa-twitter fa-fw"></i>On Twitter</a>
+      </div>
+    </div>
+    <div id="root" class="closest-color-app">
+    </div>
+    <section class="closest-color-explainer">
+      <p>Have you ever been in the situation where a mockup introduced a new color, but it's quite similar to the ones you already use? Or you wanted to clean up a colors.scss with $grey-lighter-7 and its cousins?</p>
+      <p>ClosestColor analyses your existing color palette - which you can add as CSS/SCSS/SASS) files or in the textarea. Afterwards, you can enter the color you want to compare, and we find the closest match.</p>
+      <p>ClosestColor calculates a color difference (&Delta;E) according to <a href="https://en.wikipedia.org/wiki/Color_difference">CIE2000</a>, thanks to
+        <a href="https://github.com/zschuessler/DeltaE">DeltaE</a>. Generally speaking, a difference <2.3 is imperceptible, anything >5 will be seen as different color.</p>
+    </section>
+    <footer class="closest-color-footer center-content">
+      Christian <a href="https://www.twitter.com/burtchen">Burtchen</a> 2016-2021. Licensed under MIT. Initial design by <a
+            href="https://www.twitter.com/fox">@fox</a>.
+    </footer>
+    </div>
+  </body>
+</html>

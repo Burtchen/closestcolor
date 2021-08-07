@@ -3,7 +3,7 @@ jest.unmock('../js/ColorAnalysisText');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {ColorAnalysisText} from '../js/ColorAnalysisText';
+import {ColorAnalysisText} from '../../js/ColorAnalysisText';
 
 describe('ColorAnalysisText', () => {
 
