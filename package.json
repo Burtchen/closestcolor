@@ -9,7 +9,7 @@
     "color-convert": "^2.0.1",
     "css-color-list": "0.0.2",
     "delta-e": "0.0.8",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
